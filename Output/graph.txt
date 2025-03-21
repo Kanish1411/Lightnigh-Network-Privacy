@@ -1,0 +1,176 @@
+For transaction 1000
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 50, 'rf': 2e-09, 'bias': 0.1} 
+cost: 1000.6001
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 10, 'timelock': 40, 'rf': 5e-09, 'bias': 1.0} 
+cost: 1001.0101999999999
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 20, 'rf': 3.0000000000000004e-09, 'bias': 0.7000000000000001} 
+cost: 1001.20006
+
+id-1 starting from 1 shortest path chosen 3 
+-------------------------------
+Starting from Node : 3
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 0, 'timelock': 20, 'rf': 7.000000000000001e-09, 'bias': 0.2} 
+cost: 1000.20014
+
+id-2 starting from 3 shortest path chosen 5 
+-------------------------------
+For transaction 1000
+Starting from Node : 2
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 20, 'rf': 9.000000000000001e-09, 'bias': 0.4} 
+cost: 1000.90018
+
+id-2 starting from 2 shortest path chosen 5 
+-------------------------------
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 30, 'rf': 1e-09, 'bias': 0.30000000000000004} 
+cost: 1000.80003
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 501, 'timelock': 50, 'rf': 6.000000000000001e-09, 'bias': 0.30000000000000004} 
+cost: 1000.8013
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 50, 'rf': 6.000000000000001e-09, 'bias': 0.2} 
+cost: 1000.7003000000001
+
+id-1 starting from 1 shortest path chosen 2 
+-------------------------------
+For transaction 1000
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 40, 'rf': 4e-09, 'bias': 0.6000000000000001} 
+cost: 1001.1001600000001
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 50, 'rf': 9.000000000000001e-09, 'bias': 0.6000000000000001} 
+cost: 1001.10045
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 501, 'timelock': 30, 'rf': 1e-09, 'bias': 0.6000000000000001} 
+cost: 1001.10103
+
+id-2 starting from 1 shortest path chosen 3 
+-------------------------------
+Starting from Node : 2
+address 3 
+data: {'capacity': 1000, 'base_fee': 0, 'prop_fee': 0, 'timelock': 0, 'rf': 1e-09, 'bias': 0} 
+cost: 0.0
+
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 40, 'rf': 9.000000000000001e-09, 'bias': 0.30000000000000004} 
+cost: 1000.80036
+
+id-3 starting from 2 shortest path chosen 5 
+-------------------------------
+Starting from Node : 3
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 0, 'timelock': 40, 'rf': 7.000000000000001e-09, 'bias': 0.8} 
+cost: 1000.8002799999999
+
+id-3 starting from 3 shortest path chosen 5 
+-------------------------------
+For transaction 1000
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 20, 'rf': 1e-09, 'bias': 0.30000000000000004} 
+cost: 1000.8000199999999
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 501, 'timelock': 20, 'rf': 4e-09, 'bias': 0.1} 
+cost: 1000.60108
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 50, 'rf': 8e-09, 'bias': 0.30000000000000004} 
+cost: 1000.8004
+
+id-1 starting from 1 shortest path chosen 3 
+-------------------------------
+Starting from Node : 3
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 0, 'timelock': 30, 'rf': 4e-09, 'bias': 0.6000000000000001} 
+cost: 1000.6001200000001
+
+id-2 starting from 3 shortest path chosen 5 
+-------------------------------
+For transaction 1000
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 30, 'rf': 6.000000000000001e-09, 'bias': 0.1} 
+cost: 1000.60018
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 501, 'timelock': 30, 'rf': 3.0000000000000004e-09, 'bias': 0.5} 
+cost: 1001.00109
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 40, 'rf': 2e-09, 'bias': 1.0} 
+cost: 1001.50008
+
+id-1 starting from 1 shortest path chosen 3 
+-------------------------------
+Starting from Node : 3
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 0, 'timelock': 20, 'rf': 8e-09, 'bias': 0.6000000000000001} 
+cost: 1000.6001600000001
+
+id-2 starting from 3 shortest path chosen 5 
+-------------------------------
+For transaction 1000
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 60, 'rf': 8e-09, 'bias': 0.5} 
+cost: 1001.00048
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 20, 'rf': 1e-09, 'bias': 0.5} 
+cost: 1001.00002
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 501, 'timelock': 60, 'rf': 8e-09, 'bias': 0.4} 
+cost: 1000.90148
+
+id-1 starting from 1 shortest path chosen 2 
+-------------------------------
+Starting from Node : 2
+address 3 
+data: {'capacity': 1000, 'base_fee': 0, 'prop_fee': 500, 'timelock': 0, 'rf': 2e-09, 'bias': 0} 
+cost: 0.5
+
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 30, 'rf': 9.000000000000001e-09, 'bias': 0.1} 
+cost: 1000.60027
+
+id-2 starting from 2 shortest path chosen 5 
+-------------------------------
+For transaction 1000
+Starting from Node : 1
+address 2 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 60, 'rf': 6.000000000000001e-09, 'bias': 0.6000000000000001} 
+cost: 1001.10036
+
+address 3 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 501, 'timelock': 50, 'rf': 1e-09, 'bias': 0.2} 
+cost: 1000.70105
+
+address 4 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 30, 'rf': 7.000000000000001e-09, 'bias': 0.2} 
+cost: 1000.7002100000001
+
+id-1 starting from 1 shortest path chosen 3 
+-------------------------------
+Starting from Node : 3
+address 5 
+data: {'capacity': 1000, 'base_fee': 1000, 'prop_fee': 0, 'timelock': 40, 'rf': 9.000000000000001e-09, 'bias': 0.6000000000000001} 
+cost: 1000.60036
+
+id-2 starting from 3 shortest path chosen 5 
+-------------------------------

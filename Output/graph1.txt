@@ -1,0 +1,36 @@
+For transaction 1000
+Starting from Node : 028e860f97db9702c59d9970270b83f1b22f98315170d8c260d7ef61c14ae77e7e
+address 03fcdbd95bfd6479a09ff87cf8d9a58a38dcd0dcbeab7ad524b770c91d5a0aef14 
+data: {'capacity': 300000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 30, 'rf': 7.000000000000001e-09, 'bias': 0.2} 
+cost: 1000.7002100000001
+
+address 02e5b65622411d0ab332e4f52ff26a66f25e2b0a160dd8cc4d193ee5fa48c94e60 
+data: {'capacity': 973978, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 50, 'rf': 4e-09, 'bias': 0.2} 
+cost: 1000.7002
+
+address 02eac5a6c5df6ce547d39ace2f71c17457ca15432497c5ed52e89e02d5592b8bd1 
+data: {'capacity': 20000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 50, 'rf': 9.000000000000001e-09, 'bias': 0.5} 
+cost: 1001.00045
+
+address 02b549eeb8c7a3cd10d0c016b6f1a60b7375a3fb36c869243f959c5e2026355574 
+data: {'capacity': 22150, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 60, 'rf': 4e-09, 'bias': 0.30000000000000004} 
+cost: 1000.8002399999999
+
+id-1 starting from 028e860f97db9702c59d9970270b83f1b22f98315170d8c260d7ef61c14ae77e7e shortest path chosen 03fcdbd95bfd6479a09ff87cf8d9a58a38dcd0dcbeab7ad524b770c91d5a0aef14 
+-------------------------------
+Starting from Node : 03fcdbd95bfd6479a09ff87cf8d9a58a38dcd0dcbeab7ad524b770c91d5a0aef14
+address 028e860f97db9702c59d9970270b83f1b22f98315170d8c260d7ef61c14ae77e7e 
+data: {'capacity': 300000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 30, 'rf': 7.000000000000001e-09, 'bias': 0.2} 
+cost: 1000.7002100000001
+
+address 0343076c7bd9cb87c62cf20b1e15c4ab9fe19ed3270870937db6d52c52b8b67e90 
+data: {'capacity': 1200000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 20, 'rf': 8e-09, 'bias': 0.1} 
+cost: 1000.6001600000001
+
+address 023a5d8df324832580f0815708abefc0cba23f8e7cdb39b9f847fbe6603e68518f 
+data: {'capacity': 1000000, 'base_fee': 1000, 'prop_fee': 500, 'timelock': 60, 'rf': 1e-09, 'bias': 0.9} 
+cost: 1001.4000599999999
+
+id-2 starting from 03fcdbd95bfd6479a09ff87cf8d9a58a38dcd0dcbeab7ad524b770c91d5a0aef14 shortest path chosen 0343076c7bd9cb87c62cf20b1e15c4ab9fe19ed3270870937db6d52c52b8b67e90 
+-------------------------------
+For transaction 1000
