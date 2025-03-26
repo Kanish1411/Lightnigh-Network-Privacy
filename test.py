@@ -13,7 +13,7 @@ def edge_cost(u, v, data, trx_amt):
 def init(amt=0):
     global G
     G=nx.DiGraph()
-    with open("now.json", encoding="utf-8") as f:
+    with open("now_latest.json", encoding="utf-8") as f:
         data = json.load(f)
     for node in data["nodes"]:
         G.add_node(node["pub_key"])

@@ -865,3 +865,105 @@ Entropy: -0.0
 {3: [7.321928094887363, 10], 5: [0, 0], 10: [0, 0]} 
 
 For 5 nodes (TEST 1) 
+
+For 3 nodes (TEST 1) 
+Probability of Source 03123c0f2f699575693787b92b7145c566c4cbe7a8f00a20e6d6dc3061cc3694a3: 1.0 
+Probability of Destination 0200424bd89b5282c310e10a52fd783070556f947b54d93f73fd89534ce0cba708: 1.0 
+
+Most Probable Source: 03123c0f2f699575693787b92b7145c566c4cbe7a8f00a20e6d6dc3061cc3694a3, Most Probable Destination: 0200424bd89b5282c310e10a52fd783070556f947b54d93f73fd89534ce0cba708 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 1], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 0225d033f77b0b537064f613394766faeff3a778e7d37ca26b8622a7f718480aa7: 1.0 
+Probability of Destination 020d37417bab5e21800365630d9cac640dd1c0f530d39fc32c4204d6bbb698ae1f: 1.0 
+
+Most Probable Source: 0225d033f77b0b537064f613394766faeff3a778e7d37ca26b8622a7f718480aa7, Most Probable Destination: 020d37417bab5e21800365630d9cac640dd1c0f530d39fc32c4204d6bbb698ae1f 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 2], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 02f7a2b766245e25039d386550a01b0eecb702e5524d41c7779b306e0f8d496746: 0.5 
+Probability of Source 029a9b6cae3c41077542aad1f07b81f89b273497ebdf10c9b61ffc99de1019ddb4: 0.5 
+Probability of Destination 020e892891aa7ae0952684f165c6ab618409ddbec01ebfd5f4e35dd390d3744d09: 1.0 
+
+Most Probable Source: 02f7a2b766245e25039d386550a01b0eecb702e5524d41c7779b306e0f8d496746, Most Probable Destination: 020e892891aa7ae0952684f165c6ab618409ddbec01ebfd5f4e35dd390d3744d09 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [1.0, 3], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 028850b11542155adca4dfdd339b254b678633ed80504fcfa29920fef681078048: 1.0 
+Probability of Destination 02108aa19613f51a93910f5e18953c0111cacf9cc0db0e6527d507621f4f54d7d2: 0.2 
+Probability of Destination 02b3a3a7bac515ce3f39113c0876a6bfb566584a808bb64b3d305aef19e4056455: 0.2 
+Probability of Destination 0355ee43d8aa70baa70cdc13d19b02e23a35f7a84b741be69177929b51e1b02ffe: 0.2 
+Probability of Destination 03a42d6da845fa550db7f79cb8f3cc6ad6f776e7d75111edeef96f3c1e0c152294: 0.2 
+Probability of Destination 024168c83b10fe8b516007b5c3a4a00e89eb7310bfb9f41bb03017c43c41f06fcc: 0.2 
+
+Most Probable Source: 028850b11542155adca4dfdd339b254b678633ed80504fcfa29920fef681078048, Most Probable Destination: 02108aa19613f51a93910f5e18953c0111cacf9cc0db0e6527d507621f4f54d7d2 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [1.0, 4], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 024b1403a996b27d44bb4f88f938b93270aa0d0f9c0454c7a193933228931f79de: 1.0 
+Probability of Destination 0215a99e8623fd9709cc0997fd84feff772e7559375206bd4cd0d3032aa821b9b1: 1.0 
+
+Most Probable Source: 024b1403a996b27d44bb4f88f938b93270aa0d0f9c0454c7a193933228931f79de, Most Probable Destination: 0215a99e8623fd9709cc0997fd84feff772e7559375206bd4cd0d3032aa821b9b1 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [1.0, 5], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 02e2897c6f393adc5aee8e9dab308946703cbc219e51fec511147d2c5bd7cf831e: 1.0 
+Probability of Destination 021b692549a44a6ea5d59d908aa8c14515bea07a4496e53d222c8f506a3aef82ef: 1.0 
+
+Most Probable Source: 02e2897c6f393adc5aee8e9dab308946703cbc219e51fec511147d2c5bd7cf831e, Most Probable Destination: 021b692549a44a6ea5d59d908aa8c14515bea07a4496e53d222c8f506a3aef82ef 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [1.0, 6], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 0368607efcd1aad74835fb3aaaa0ac5c1c29995a1a2f9aba8b0dd734bded251977: 1.0 
+Probability of Destination 021d5b37197e000eff8ee503659958e0abbecfe2d4761f75aff6aab4b82d02a61a: 1.0 
+
+Most Probable Source: 0368607efcd1aad74835fb3aaaa0ac5c1c29995a1a2f9aba8b0dd734bded251977, Most Probable Destination: 021d5b37197e000eff8ee503659958e0abbecfe2d4761f75aff6aab4b82d02a61a 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [1.0, 7], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 02dffe62fa6ee4d2e0af27c7e2960930f7edacf5ce57c77e1442fe3cf384165732: 0.5 
+Probability of Source 02bfea20cc003bfa2d289bf8084df8b7d19c44f079f3f3729f006afaf6976cc25d: 0.5 
+Probability of Destination 02219b2f1140f25e5ac1dc2d727fa1d41b4f3bfbc1c5157d631decf2744d09fe60: 1.0 
+
+Most Probable Source: 02dffe62fa6ee4d2e0af27c7e2960930f7edacf5ce57c77e1442fe3cf384165732, Most Probable Destination: 02219b2f1140f25e5ac1dc2d727fa1d41b4f3bfbc1c5157d631decf2744d09fe60 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [2.0, 8], 5: [0, 0], 10: [0, 0]} 
+Probability of Source 0247e898d2e72acf6e386472b9b98467b11ca9fba7289caa6d658abfb6c97c0ba6: 1.0 
+Probability of Destination 022ce3a40e10c7a4beb0d852490b025b0aaf75d203dead5cb28987a439fd7c3f3b: 0.2 
+Probability of Destination 03e5fefa29743c6b44189f945527f6be2c23852f94450ab0a3a0bcca15633a4cd8: 0.2 
+Probability of Destination 0208fb7f9d909c9c9a4d9f83ed150bb2d2d25ab7e49c4b7abcc22c7db37118bb31: 0.2 
+Probability of Destination 035dcde9122bbac5048443c29a21c77ced865340767412f6e76ed3cae4cc45c609: 0.2 
+Probability of Destination 033a5ff126c9cc5b803dc38bb2e7ab8cc8ba96481f97cb5953a58dc0b728bce805: 0.2 
+
+Most Probable Source: 0247e898d2e72acf6e386472b9b98467b11ca9fba7289caa6d658abfb6c97c0ba6, Most Probable Destination: 022ce3a40e10c7a4beb0d852490b025b0aaf75d203dead5cb28987a439fd7c3f3b 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [2.0, 9], 5: [0, 0], 10: [0, 0]} 

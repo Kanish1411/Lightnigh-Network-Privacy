@@ -104,10 +104,10 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f=None):
 def trx_amt_test(trx_amt=1000):
     init(trx_amt)
     while(1):
-        # src = random.choice(list(G.nodes()))
-        # dest = random.choice(list(G.nodes()))
-        src="031d206b670071c5491f258ac6662e6d7ea5cc5d422677cd82e5a8236506d3ea62"
-        dest="025d52d3148392f5c70eec734697ffad007bd99af76b01d0c7bae594ad1ad1fc18"
+        src = random.choice(list(G.nodes()))
+        dest = random.choice(list(G.nodes()))
+        # src="031d206b670071c5491f258ac6662e6d7ea5cc5d422677cd82e5a8236506d3ea62"
+        # dest="025d52d3148392f5c70eec734697ffad007bd99af76b01d0c7bae594ad1ad1fc18"
         if src!=dest:
             try:
                 l=nx.shortest_path(G,source=src,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
@@ -116,15 +116,18 @@ def trx_amt_test(trx_amt=1000):
             except:
                 pass
     print(l)
-    
-    # att=random.choice(l[1:-1])
-    att="0217890e3aad8d35bc054f43acc00084b25229ecff0ab68debd82883ad65ee8266"
+    att=random.choice(l[1:-1])
+    # att="0217890e3aad8d35bc054f43acc00084b25229ecff0ab68debd82883ad65ee8266"
     ind=l.index(att)
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
     print(actual_amt)
     _,dests=find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt=trx_amt)
+    print(len(dests))
+    new_dest={}
     lower=0
     upper=0
+    # if len(dests)>100:
+    #     return
     for d in dests:
         bf=[]
         pf=[]
@@ -135,37 +138,32 @@ def trx_amt_test(trx_amt=1000):
             v, u = path[i], path[i - 1] 
             edge_data = G[u][v]
             bf.append(edge_data.get("base_fee", 0))
-            pf.append(edge_data.get("prop_fee", 0) / 1e6)
-        pf2=pf
-        for i in range(1,len(pf)):
-            p=1
-            for j in range(0,i):
-                p*=pf[j]
-            pf[i]*=p
-        amt=float(0)
-        a=0
+            # pf.append(edge_data.get("prop_fee", 0) / 1e6)
         b=0
-        # print(bf)
         for i in range(len(bf)):
-            # if i>0:
-            #     a+=bf[i]*pf[i-1]
             b+=bf[i]
-            amt=a+b
-        upper= trx-amt
+        upper= trx-b
         b=0
-        for i in range(len(pf2)):
-            b+=pf2[i]*trx
-        lower=upper-b
-        # print(d,upper,lower,trx,att)
+        lower=0.9*upper
         if upper > trx  or lower > trx:
+            print(f"Out of bounds for {d}")
             break
         try:
-            print(binary_search(upper,lower,actual_amt,att,d))
-            print(f"{d} is a possible Destination ")
+            val=binary_search(upper,lower,actual_amt,att,d)
+            if val == -1:
+                break
+            print(f"{d} is a possible Destination {round(val,ndigits=2)} ")
+            new_dest[d]=val
         except:
-            # print(f"{d} is not a possible Destination")
+            # print(f"{d} is not a possible Destination - Problem in Binary search {upper} {lower}")
             pass
-
+    print(new_dest)
+    print(len(new_dest))
+    val=0
+    for i in new_dest.keys():
+        val+=new_dest[i]
+    print(val/len(new_dest))
+    
 def binary_search(h,l,val,src,dest):
     m=(h+l)/2
     c=calculate_total_fee(trx_amt=m,G=G,path=nx.shortest_path(G,source=src,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, m)))
@@ -175,12 +173,13 @@ def binary_search(h,l,val,src,dest):
         return binary_search(h,m,val,src,dest)
     if c==val:
         return m
+    if l==h:
+        return -1
     
 if __name__ == "__main__":
-    trx_amt=100
-    init(trx_amt)
+    trx_amt=11111
+    # init(trx_amt)
     trx_amt_test(trx_amt)
-    # binary_search(dest="025d52d3148392f5c70eec734697ffad007bd99af76b01d0c7bae594ad1ad1fc18", h=95.50126397200575,l=84.9987471496394 ,val=2100.5012639720057,src="0217890e3aad8d35bc054f43acc00084b25229ecff0ab68debd82883ad65ee8266")
 
 
 
