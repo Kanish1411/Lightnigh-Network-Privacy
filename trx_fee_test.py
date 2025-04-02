@@ -3,7 +3,7 @@ import random
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
-import math
+from math import prod
 G = nx.DiGraph()
 
 def edge_cost(u, v, data, trx_amt):
@@ -42,7 +42,7 @@ def calculate_fee_at_node(path, trx_amt, G,node):
 def init(amt=0):
     global G
     G=nx.DiGraph()
-    with open("now.json", encoding="utf-8") as f:
+    with open("now_latest.json", encoding="utf-8") as f:
         data = json.load(f)
     for node in data["nodes"]:
         G.add_node(node["pub_key"])
@@ -61,6 +61,7 @@ def init(amt=0):
                                                                             rf=rf,
                                                                             bias=bias)
             else:
+                ########## false right?????????????
                 if edge["node1_policy"]["disabled"] == True:
                     G.add_edge(edge["node1_pub"], edge["node2_pub"], capacity=int(edge["capacity"]),
                                                                             base_fee=int(edge["node1_policy"]["fee_base_msat"]),
@@ -83,11 +84,11 @@ def init(amt=0):
                                                                             timelock=int(edge["node2_policy"]["time_lock_delta"]),
                                                                             rf=rf,
                                                                             bias=bias)
-sources=[]
-dest=[]
+
 
 def find_source_dest_pair(prev, n, nxt, trx_amt,f=None):
-    global sources, dest
+    sources=[]
+    dest=[]
     # Source identification
     paths = nx.shortest_path(G, target=nxt, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
     for i in paths.values():
@@ -106,8 +107,8 @@ def trx_amt_test(trx_amt=1000):
     while(1):
         src = random.choice(list(G.nodes()))
         dest = random.choice(list(G.nodes()))
-        # src="031d206b670071c5491f258ac6662e6d7ea5cc5d422677cd82e5a8236506d3ea62"
-        # dest="025d52d3148392f5c70eec734697ffad007bd99af76b01d0c7bae594ad1ad1fc18"
+        # src="025361e6c9aa972c3720cabd30903d921f3fc969e0d25b1a233f0e8ea348c3d122"
+        # dest="03b72234539409e6390cf66322319cf2211f09880b015259bb66e69d47c507da05"
         if src!=dest:
             try:
                 l=nx.shortest_path(G,source=src,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
@@ -117,7 +118,6 @@ def trx_amt_test(trx_amt=1000):
                 pass
     print(l)
     att=random.choice(l[1:-1])
-    # att="0217890e3aad8d35bc054f43acc00084b25229ecff0ab68debd82883ad65ee8266"
     ind=l.index(att)
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
     print(actual_amt)
@@ -138,13 +138,38 @@ def trx_amt_test(trx_amt=1000):
             v, u = path[i], path[i - 1] 
             edge_data = G[u][v]
             bf.append(edge_data.get("base_fee", 0))
-            # pf.append(edge_data.get("prop_fee", 0) / 1e6)
+            pf.append(edge_data.get("prop_fee", 0) / 1e6)
         b=0
         for i in range(len(bf)):
-            b+=bf[i]
+            a=1
+            f=0
+            ##################Update
+            # for j in range(i+1,len(pf)):
+            #     f=1
+            #     a*=pf[j]
+            if f==0:
+                a=0
+            b+=(bf[i]*(1+a))
         upper= trx-b
         b=0
-        lower=0.9*upper
+        path=nx.shortest_path(G,source=att,target=d,weight=lambda u, v, d: edge_cost(u, v, d, upper))
+        val=calculate_total_fee(path,trx_amt=upper,G=G)
+        for i in bf:
+            val-=i
+        lower=upper-(val-upper)
+        # print(upper,lower)
+        # for i in range(len(bf)):
+        #     inner_sum = 0
+        #     for m in range(i + 1, len(bf)):
+        #         product_term = prod(pf[i+1:m+1]) if m >= i + 1 else 0
+        #         inner_sum += product_term
+        #     total_sum += bf[i] * inner_sum
+        # x_term = sum(prod(pf[:i]) for i in range(1, len(pf) + 1))
+        # tl_rf=0
+        # for m in range(len(tl)):
+        #     tl_rf+=(tl[m]*rf[m])
+        # lower=upper - (total_sum) -upper*x_term - trx_amt*tl_rf
+        # print(d,upper,lower,x_term,total_sum, tl_rf)
         if upper > trx  or lower > trx:
             print(f"Out of bounds for {d}")
             break
@@ -177,7 +202,7 @@ def binary_search(h,l,val,src,dest):
         return -1
     
 if __name__ == "__main__":
-    trx_amt=11111
+    trx_amt=1234.45
     # init(trx_amt)
     trx_amt_test(trx_amt)
 

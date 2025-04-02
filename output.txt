@@ -967,3 +967,1103 @@ Entropy Analysis
 Entropy: -0.0
 
 {3: [2.0, 9], 5: [0, 0], 10: [0, 0]} 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 1], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [1.0, 2], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [1.0, 3], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 6.042600970730294
+
+{3: [7.042600970730294, 4], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.0
+
+{3: [9.042600970730295, 5], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [9.042600970730295, 6], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [9.042600970730295, 7], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [9.042600970730295, 8], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [9.042600970730295, 9], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [9.042600970730295, 10], 5: [0, 0], 10: [0, 0]} 
+
+{3: [9.042600970730295, 10], 5: [0, 0], 10: [0, 0]} 
+
+For 5 nodes (TEST 1) 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 1], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [1.0, 2], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.1280852788913944
+
+{3: [3.1280852788913944, 3], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [3.1280852788913944, 4], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 5.55458885167764
+
+{3: [8.682674130569035, 5], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [8.682674130569035, 6], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [8.682674130569035, 7], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [8.682674130569035, 8], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [8.682674130569035, 9], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 1.9995497476516628
+
+{3: [10.682223878220698, 10], 5: [0, 0], 10: [0, 0]} 
+
+{3: [10.682223878220698, 10], 5: [0, 0], 10: [0, 0]} 
+
+For 5 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0, 0], 5: [0.0, 1], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0, 0], 5: [0.0, 2], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 3.0
+
+{3: [0, 0], 5: [3.0, 3], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.0
+
+{3: [0, 0], 5: [5.0, 4], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0, 0], 5: [5.0, 5], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [0, 0], 5: [6.0, 6], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.0
+
+{3: [0, 0], 5: [8.0, 7], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0, 0], 5: [8.0, 8], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 10.599912842187331
+
+{3: [0, 0], 5: [18.59991284218733, 9], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 1.584962500721156
+
+{3: [0, 0], 5: [20.184875342908484, 10], 10: [0, 0]} 
+
+{3: [0, 0], 5: [20.184875342908484, 10], 10: [0, 0]} 
+
+For 10 nodes (TEST 1) 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [1.0, 1], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.0
+
+{3: [3.0, 2], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [3.0, 3], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [3.0, 4], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [3.0, 5], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [3.0, 6], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.584962500721156
+
+{3: [5.584962500721156, 7], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [5.584962500721156, 8], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+{3: [5.584962500721156, 9], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [5.584962500721156, 10], 5: [0, 0], 10: [0, 0]} 
+
+{3: [5.584962500721156, 10], 5: [0, 0], 10: [0, 0]} 
+
+For 5 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: 1.584962500721156
+
+{3: [0, 0], 5: [1.584962500721156, 1], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 5.357552004618081
+
+{3: [0, 0], 5: [6.942514505339237, 2], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 3.7004397181410926
+
+{3: [0, 0], 5: [10.64295422348033, 3], 10: [0, 0]} 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 1], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 2], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 3], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.0
+
+{3: [2.0, 4], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [2.0, 5], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 4.08746284125034
+
+{3: [6.08746284125034, 6], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 2.0
+
+{3: [8.087462841250339, 7], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 7.294620748891623
+
+{3: [15.382083590141962, 8], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [15.382083590141962, 9], 5: [0, 0], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [15.382083590141962, 10], 5: [0, 0], 10: [0, 0]} 
+
+{3: [15.382083590141962, 10], 5: [0, 0], 10: [0, 0]} 
+
+For 5 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: 5.473690781476511
+
+{3: [0, 0], 5: [5.473690781476511, 1], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0, 0], 5: [5.473690781476511, 2], 10: [0, 0]} 
+
+Entropy Analysis
+
+Entropy: 10.012624538864976
+
+{3: [0, 0], 5: [15.486315320341486, 3], 10: [0, 0]} 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: 12.72685675544981
+
+{3: [12.72685675544981, 1], 5: [0, 0], 10: [0, 0]} 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: 1.0
+
+{3: [1.0, 1], 5: [0, 0], 10: [0, 0]} 
+
+For 5 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: 9.616026764974782
+
+{3: [1.0, 1], 5: [9.616026764974782, 1], 10: [0, 0]} 
+
+For 10 nodes (TEST 1) 
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+For 3 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+{3: [0.0, 1], 5: [0, 0], 10: [0, 0]} 
+
+For 5 nodes (TEST 1) 
+
+Entropy Analysis
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+Entropy: -0.0
+
+{3: [0.0, 1], 5: [0.0, 1], 10: [0, 0]} 
+
+For 10 nodes (TEST 1) 

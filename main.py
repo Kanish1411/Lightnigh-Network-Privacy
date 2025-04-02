@@ -137,7 +137,7 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f):
     for i in paths.values():
         if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
             dest.append(i[-1])
-    s = 0
+    s = {}
     l_src = {}
     l_dest = {}
 
@@ -149,7 +149,7 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f):
                 if [prev, n, nxt] in [sp[k:k+3] for k in range(len(sp)-2)]:
                     l_src[i] = l_src.get(i, 0) + 1
                     l_dest[j] = l_dest.get(j, 0) + 1
-                    s += 1
+                    s[i]=s.get(i,0)+1
 
     # Finding the most probable Source & Destination
     # src = max(l_src, key=l_src.get, default=None)
@@ -167,10 +167,34 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f):
     f.write("\nEntropy Analysis\n")
     H = 0
     s = sum(l_src.values())
-
+    print("Entropy analysis")
+    H=0
+    print("P(Bi|A)=P(A|Bi)/sum(P(A|Bk))")
+    #####################
+    # for i in sources:
+    #     a=list(nx.shortest_path(G,source=i,weight=lambda u,v,d:edge_cost(u,v,d,trx_amt)))
+    #     u=0
+    #     for i in a:
+    #         if n in i:
+    #             if n !=i[-1]:
+    #                 u+=1
+    #     print(f"P(A|Bi)= {u/len(a)}")
+    #     pabi=u/len(a)
+    #     s=0
+    #     for j in sources:
+    #         b=list(nx.shortest_path(G,source=j,weight=lambda u,v,d:edge_cost(u,v,d,trx_amt)))
+    #         u=0
+    #         for i in b:
+    #             if n in i:
+    #                 if n !=i[-1]:
+    #                     u+=1
+    #         s+=u/len(b)
+    #     H+=((pabi/s)*math.log2(pabi/s))
+    # print(-1*H)
+    ###############
     if s > 0:
         for i in l_src:
-            P_A_Bi = l_src[i] / s
+            P_A_Bi = l_src[i] / s[i]
             H += P_A_Bi * math.log2(P_A_Bi)        
         f.write(f"\nEntropy: { -H}\n")
     return -H
