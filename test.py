@@ -54,91 +54,75 @@ def init(amt=0):
                                                                             rf=rf,
                                                                             bias=bias)
 
-
-
-
-
-
-def find_source_dest_pair(prev, n, nxt, trx_amt,f):
+def find_source_dest_pair(prev, n, nxt,trx_amt, f):
     sources=[]
     dest=[]
     # Source identification
-    paths = nx.shortest_path(G, target=nxt, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
+    paths = nx.shortest_path(G, target=nxt,weight=lambda u, v, d: edge_cost(u, v,d,trx_amt))
     for i in paths.values():
         if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
             sources.append(i[0])
 
     # Destination finding
-    paths = nx.single_source_dijkstra_path(G, source=prev, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
+    paths = nx.single_source_dijkstra_path(G, source=prev,weight=lambda u, v, d: edge_cost(u, v,d,trx_amt))
     for i in paths.values():
         if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
             dest.append(i[-1])
-    s = {}
     l_src = {}
-    l_dest = {}
 
     # Compute Source & Destination probabilities
     for i in sources:
         for j in dest:
             if nx.has_path(G, i, j):
-                sp = nx.shortest_path(G, source=i, target=j, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
+                sp = nx.shortest_path(G, source=i, target=j,weight=lambda u, v, d: edge_cost(u, v,d,trx_amt))
                 if [prev, n, nxt] in [sp[k:k+3] for k in range(len(sp)-2)]:
                     l_src[i] = l_src.get(i, 0) + 1
-                    l_dest[j] = l_dest.get(j, 0) + 1
-                    s[i]=s.get(i,0)+1
-
-    # Finding the most probable Source & Destination
-    # src = max(l_src, key=l_src.get, default=None)
-    # d = max(l_dest, key=l_dest.get, default=None)
-
-    # if s > 0:
-    #     for i in l_src:
-    #         f.write(f"Probability of Source {i}: {l_src[i] / s} \n")
-    #     for i in l_dest:
-    #         f.write(f"Probability of Destination {i}: {l_dest[i] / s} \n")
-
-    # f.write(f"\nMost Probable Source: {src}, Most Probable Destination: {d} \n")
 
     # Entropy Analysis
-    f.write("\nEntropy Analysis\n")
+    
     H = 0
 
+    s=sum(l_src.values())
     for i in l_src:
-        if s[i] > 0:
-            P_A_Bi = l_src[i] / s[i]
+        if s > 0:
+            P_A_Bi = l_src[i] / s
             H += P_A_Bi * math.log2(P_A_Bi)
-        f.write(f"\nEntropy: { -H}\n")
+        f.write(f"Entropy: { -H}\n")
     return -H
 
 def test(trx_amt=10):
     init(trx_amt)
-    with open("output.txt","+a") as f:
-        for k in range(0,3):
-            d={3:[0,0],5:[0,0],10:[0,0]}
+    with open("output3.txt","+a") as f:
+        f.write(f"for trx_amt = {trx_amt} \n\n")
+        print(f"for trx_amt = {trx_amt}")
+        for k in range(0,1):
+            d={5:[0,0],7:[0,0]}
             for j in d.keys():
-                f.write(f"\nFor {j} nodes (TEST {k+1}) \n")
-                while True:
+                f.write(f"For {j} nodes (TEST {k+1}) \n") 
+                for i in G.nodes():
                     src = random.choice(list(G.nodes()))
-                    dest=random.choice(list(G.nodes()))
                     try:
-                        l=nx.shortest_path(G,source=src,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
-                        if len(l)==j:
-                            print("yeppa")
-                            break
+                        l=nx.shortest_path(G,source=src,target=i,weight=lambda u, v, d: edge_cost(u, v,d,trx_amt))
                     except:
                         continue
-                if d[j][1]==10:
-                    f.write(f"\n{str(d)} \n")
-                    d[j][0]=0
-                    d[j][1]=0
-                    
-                m=random.choice(l[1:-1])
-                ind=l.index(m)
-                H=find_source_dest_pair(l[ind-1],m,l[ind+1],trx_amt,f)
-                d[j][0]+=H
-                d[j][1]+=1
-                f.write(f"\n{str(d)} \n")
-                print(d)
+                    if l==[]:
+                        continue
+                    if len(l)==j:
+                        if d[j][1]==int(len(G.nodes())*0.01):
+                            f.write(f"{str(d)} \n")
+                            d[j][0]=0
+                            d[j][1]=0
+                            break
+                        m=random.choice(l[1:-1])
+                        ind=l.index(m)
+                        H=find_source_dest_pair(l[ind-1],m,l[ind+1],trx_amt,f)
+                        d[j][0]+=H
+                        d[j][1]+=1
+                    else:
+                        continue
+                    f.write(f"{str(d)}\n")
+                    print(d)
 
 if __name__ == "__main__":
-    test(10000)
+    for i in [10,1000,10000]:
+        test(i)
