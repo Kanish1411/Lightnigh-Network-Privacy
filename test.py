@@ -92,13 +92,12 @@ def find_source_dest_pair(prev, n, nxt,trx_amt, f):
 
 def test(trx_amt=10):
     init(trx_amt)
-    with open("output3.txt","+a") as f:
-        f.write(f"for trx_amt = {trx_amt} \n\n")
-        print(f"for trx_amt = {trx_amt}")
-        for k in range(0,1):
-            d={5:[0,0],7:[0,0]}
-            for j in d.keys():
-                f.write(f"For {j} nodes (TEST {k+1}) \n") 
+    d={5:[0,0],7:[0,0]}
+    for j in d.keys():
+            with open(f"output{j}.txt","+a") as f:
+                f.write(f"for trx_amt = {trx_amt} \n\n")
+                print(f"for trx_amt = {trx_amt}")
+                f.write(f"For {j} nodes \n") 
                 for i in G.nodes():
                     src = random.choice(list(G.nodes()))
                     try:
