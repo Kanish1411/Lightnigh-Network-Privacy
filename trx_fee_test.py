@@ -116,13 +116,10 @@ def trx_amt_test(trx_amt=1000):
                     break
             except:
                 pass
-    print(l)
     att=random.choice(l[1:-1])
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
     ind=l.index(att)
-    print(actual_amt)
     _,dests=find_source_dest_pair(l[ind-1],att,l[ind+1])
-    print(len(dests))
     new_dest={}
     lower=0
     upper=0
@@ -178,8 +175,6 @@ def trx_amt_test(trx_amt=1000):
         except:
             # print(f"{d} is not a possible Destination - Problem in Binary search {upper} {lower}")
             pass
-    print(new_dest)
-    print(len(new_dest))
     val=0
     for i in new_dest.keys():
         val+=new_dest[i]

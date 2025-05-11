@@ -6,6 +6,8 @@ import numpy as np
 import math
 G = nx.DiGraph()
 
+op="case_1"
+
 def edge_cost(u, v, data, trx_amt):
     cost = (trx_amt * ((data.get("prop_fee", 0) / 1e6) + (data.get("timelock", 0) * data.get("rf", 1e-9)))) +  data.get("base_fee", 0) + data.get("bias", 1)
     return cost
@@ -79,7 +81,7 @@ def calculate_total_fee(path, trx_amt, G):
 def init(amt=0):
     global G
     G=nx.DiGraph()
-    with open("now.json", encoding="utf-8") as f:
+    with open("Graph_new.json", encoding="utf-8") as f:
         data = json.load(f)
     for node in data["nodes"]:
         G.add_node(node["pub_key"])
@@ -91,6 +93,7 @@ def init(amt=0):
     for edge in data["edges"]:
         if int(edge["capacity"])>=amt:
             if edge["node1_policy"] == None:
+                continue
                 G.add_edge(edge["node1_pub"], edge["node2_pub"],capacity=int(edge["capacity"]),
                                                                             base_fee=base_fee,
                                                                             prop_fee=prop_fee,
@@ -106,6 +109,7 @@ def init(amt=0):
                                                                             rf=rf,
                                                                             bias=bias)
             if edge["node2_policy"] == None:
+                continue
                 G.add_edge(edge["node2_pub"], edge["node1_pub"],capacity=int(edge["capacity"]),
                                                                             base_fee=base_fee,
                                                                             prop_fee=prop_fee,
@@ -137,7 +141,7 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f):
     for i in paths.values():
         if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
             dest.append(i[-1])
-    s = {}
+    s = 0
     l_src = {}
     l_dest = {}
 
@@ -149,27 +153,35 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f):
                 if [prev, n, nxt] in [sp[k:k+3] for k in range(len(sp)-2)]:
                     l_src[i] = l_src.get(i, 0) + 1
                     l_dest[j] = l_dest.get(j, 0) + 1
-                    s[i]=s.get(i,0)+1
+                    s+=1
 
     # Finding the most probable Source & Destination
-    # src = max(l_src, key=l_src.get, default=None)
-    # d = max(l_dest, key=l_dest.get, default=None)
+    src = max(l_src, key=l_src.get, default=None)
+    d = max(l_dest, key=l_dest.get, default=None)
+    s1=0
+    d1=0
+    u=0
+    v=0
+    if s > 0:
+        for i in l_src:
+            f.write(f"Probability of Source {i}: {l_src[i] / s} \n")
+            u+=1
+            s1+=(l_src[i] / s)
+        for i in l_dest:
+            f.write(f"Probability of Destination {i}: {l_dest[i] / s} \n")
+            v+=1
+            d1+=(l_dest[i] / s)
 
-    # if s > 0:
-    #     for i in l_src:
-    #         f.write(f"Probability of Source {i}: {l_src[i] / s} \n")
-    #     for i in l_dest:
-    #         f.write(f"Probability of Destination {i}: {l_dest[i] / s} \n")
-
-    # f.write(f"\nMost Probable Source: {src}, Most Probable Destination: {d} \n")
-
+    f.write(f"\nMost Probable Source: {src}, Most Probable Destination: {d} \n")
+    f.write(f"\nAverage probability of source: {s1/u}\n Average probability of Dest:{d1/v}")
+    
     # Entropy Analysis
-    f.write("\nEntropy Analysis\n")
-    H = 0
-    s = sum(l_src.values())
-    print("Entropy analysis")
-    H=0
-    print("P(Bi|A)=P(A|Bi)/sum(P(A|Bk))")
+    # f.write("\nEntropy Analysis\n")
+    # H = 0
+    # s = sum(l_src.values())
+    # print("Entropy analysis")
+    # H=0
+    # print("P(Bi|A)=P(A|Bi)/sum(P(A|Bk))")
     #####################
     # for i in sources:
     #     a=list(nx.shortest_path(G,source=i,weight=lambda u,v,d:edge_cost(u,v,d,trx_amt)))
@@ -192,40 +204,49 @@ def find_source_dest_pair(prev, n, nxt, trx_amt,f):
     #     H+=((pabi/s)*math.log2(pabi/s))
     # print(-1*H)
     ###############
-    if s > 0:
-        for i in l_src:
-            P_A_Bi = l_src[i] / s[i]
-            H += P_A_Bi * math.log2(P_A_Bi)        
-        f.write(f"\nEntropy: { -H}\n")
-    return -H
+    # if s > 0:
+    #     for i in l_src:
+    #         P_A_Bi = l_src[i] / s[i]
+    #         H += P_A_Bi * math.log2(P_A_Bi)        
+    #     f.write(f"\nEntropy: { -H}\n")
+    # return -H
 
 def main():
 
-    source = "03b1be68b8f564fe53f5456cf4bec901ba968fb72ed7291279ab0c87e0d22f1f49"  
-    target = "0242a4ae0c5bef18048fbecf995094b74bfb0f7391418d71ed394784373f41e4f3" 
-    path=[]
     global unused_path
-    with open("paths.txt", "a+") as f:
-        for trx_amt in [100000]:
+    with open(op+"/paths.txt", "a+") as f:
+        for trx_amt in [10,1000,10000]:
+            init(trx_amt)
+            
+            while(1):
+                    src1 = random.choice(list(G.nodes()))
+                    dest = random.choice(list(G.nodes()))
+                    # src1="02ae1f0670b5c14a4c065d1f32e70feeae5027de2b9d98f9d3b6f70ca7c364bd02"
+                    # dest="03d9dd7d70829542f0eb9517f0f53471b269a9716c340abf08a8e234c1c9fb6a05"
+                    if src1!=dest:
+                        try:
+                            #testing so it can use the amount
+                            l=nx.shortest_path(G,source=src1,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
+                            if len(l)>=3:
+                                break
+                        except:
+                            pass
+            att=random.choice(l[1:-1]) 
+            ind=l.index(att)
             try:
+                f.write("\n------------------------------------------------------for {trx_amt}")
                 init(trx_amt)
                 unused_path=[]
-                path = nx.shortest_path(G, source=source, target=target, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
-                f.write(f"Shortest path for tx amount {trx_amt}: {path}\n")
-                print(f"Shortest path for tx amount {trx_amt}: {path}") 
-                print(calculate_total_fee(path=path,trx_amt=trx_amt,G=G))
-                print(calculate_total_fee(path=path[1:],trx_amt=trx_amt,G=G))
+                f.write(f"Shortest path for tx amount {trx_amt}: {l}\n")
                 # draw_graph(path,trx_amt)
 
             except nx.NetworkXNoPath:
                 f.write(f"No path found for tx amount {trx_amt}\n")
                 print(f"No path found for tx amount {trx_amt}")
 
-    # find_source_dest_pair('03b1be68b8f564fe53f5456cf4bec901ba968fb72ed7291279ab0c87e0d22f1f49', '030474c6abc3ec16c163592480865f76a3c18ef206540a3554889973fbd5be6375', '0242a4ae0c5bef18048fbecf995094b74bfb0f7391418d71ed394784373f41e4f3',trx_amt)
-    print(path)
+            find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,f)
 
 if __name__ == "__main__":
-    # init()
     main()
 
 

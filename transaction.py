@@ -4,8 +4,9 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 from math import prod
+import os
 G = nx.DiGraph()
-
+op="case_1"
 def edge_cost(u, v, data, trx_amt):
     cost = (trx_amt * ((data.get("prop_fee",0) / 1e6) + (data.get("timelock", 0) * data.get("rf", 1e-9)))) +  data.get("base_fee", 0) + data.get("bias", 1)
     return cost
@@ -113,31 +114,30 @@ def trx_amt_test(trx_amt=1000):
     print("initialized")
     print(len(G.nodes()),len(G.edges))
     while(1):
-        src = random.choice(list(G.nodes()))
+        src1 = random.choice(list(G.nodes()))
         dest = random.choice(list(G.nodes()))
-        # src="03f2e1a52f35cc0bd3cfda53864cd663b98345688458761cf039d57f22d1c4347c"
-        # dest="03b72234539409e6390cf66322319cf2211f09880b015259bb66e69d47c507da05"
-        if src!=dest:
+        # src1="02ae1f0670b5c14a4c065d1f32e70feeae5027de2b9d98f9d3b6f70ca7c364bd02"
+        # dest="03d9dd7d70829542f0eb9517f0f53471b269a9716c340abf08a8e234c1c9fb6a05"
+        if src1!=dest:
             try:
                 #testing so it can use the amount
-                l=nx.shortest_path(G,source=src,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
+                l=nx.shortest_path(G,source=src1,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
                 if len(l)>=3:
                     break
             except:
                 pass
-    print(l)
     att=random.choice(l[1:-1])
-    # att="03c7cad7e4ecfc741909b910d59b31b631e36afffc58e87389172c80702fddcbfa"
+    # att="02df5ffe895c778e10f7742a6c5b8a0cefbe9465df58b92fadeb883752c8107c8f"
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att) # x recieved at attacker
-    ind=l.index(att)
     print(actual_amt)
+    ind=l.index(att)
     src,dests=find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt)
     # dests=["03b72234539409e6390cf66322319cf2211f09880b015259bb66e69d47c507da05"]
-    print(len(dests))
     new_dest={}
     lower=0
     upper=0
-
+    o=0
+    re=0
     for d in dests:
         bf=[]
         pf=[]
@@ -182,45 +182,79 @@ def trx_amt_test(trx_amt=1000):
         if upper > actual_amt  or lower > actual_amt:
             print(f"Out of bounds for {d}")
             break
+        
         try:
             val=binary_search(upper,lower,actual_amt,att,d)
             if val == -1 or val==0:
                 break
             print(f"{d} is a possible Destination {round(val,ndigits=2)} ")
-            new_dest[d]=val
+            if round(val,ndigits=2) not in new_dest:
+                new_dest[round(val,ndigits=2)]=[]
+            new_dest[round(val,ndigits=2)].append(d)
         except:
             # print(f"{d} is not a possible Destination - Problem in Binary search {upper} {lower}")
-            pass
-    
+            continue
+        # print("\n relative error")
+        # print(actual_amt)
+        # trx_1=lower+((upper-lower)/2)
+        # print(trx_1,1000,upper,lower)
+        # o+=1
+        # re+=(abs(1000-trx_1)/1000)
+        # print(abs(1000-trx_1)/1000)
+        # print(re/o)
     print(len(dests),len(new_dest))
     val=0
-    for i in new_dest.keys():
-        val+=new_dest[i]
-        if dest==i:
-            print("the destination  is here ---------\n")
-            print(i," ",new_dest[i])
-    print(val/len(new_dest))
-    l1=[]
-    for i in new_dest:
-        if new_dest[i] not in l1:
-            l1.append(new_dest[i])
-    print(l1)
-    l1.sort()
-    new_src=[]
-    print(len(src))
-    for i in src:
-        for j in new_dest:
-            for k in l1:
-                try:
-                    p=nx.shortest_path(G,source=i,target=j,weight=lambda u, v, d: edge_cost(u, v, d, k))
-                except:
-                    continue
-                if [l[ind-1],att,l[ind+1]] in [p[z:z+3] for z in range(len(p)-2)]:
-                    if(calculate_fee_at_node(p,k,G,att)==actual_amt) and i not in new_src:
-                        new_src.append(i)
-                        print(k,i,j)
-    print(len(src),len(new_src))
-    print(len(dests),len(new_dest))
+    print(dest)
+    # for i in new_dest:
+    #     print(i, new_dest[i])
+    # for i in new_dest:
+    #     print(i,len(new_dest[i]))
+    os.mkdir("test")
+    with open("test/data.json", "a") as j:
+        json.dump(new_dest, j)
+    with open("test/src.json", "a") as j:
+        json.dump(src, j)
+    misc={}
+    misc["source"]=src1
+    misc["attacker"]=att
+    misc["n-1"]=l[ind-1]
+    misc["n+1"]=l[ind+1]
+    misc["amt"]=actual_amt
+    misc["dest"]=dest
+
+    with open("test/misc.json", "a") as j:
+        json.dump(misc, j)
+        
+    # for i in new_dest.keys():
+    #     val+=new_dest[i]
+    #     if dest==i:
+    #         print("the destination  is here ---------\n")
+    #         print(i," ",new_dest[i])
+    # print(val/len(new_dest))
+    # l1=[]
+    # for i in new_dest:
+    #     if new_dest[i] not in l1:
+    #         l1.append(new_dest[i])
+    # print(l1)
+    # l1.sort()
+    # new_src=[]
+    # print(len(src))
+    # for i in src:
+    #     for j in new_dest:
+    #         for k in l1:
+    #             try:
+    #                 p=nx.shortest_path(G,source=i,target=j,weight=lambda u, v, d: edge_cost(u, v, d, k))
+    #             except:
+    #                 continue
+    #             if [l[ind-1],att,l[ind+1]] in [p[z:z+3] for z in range(len(p)-2)]:
+    #                 if(calculate_fee_at_node(p,k,G,att)==actual_amt) and i not in new_src:
+    #                     new_src.append(i)
+    #                     print(k,i,j)
+    # print(len(src),len(new_src))
+    # print(len(dests),len(new_dest))
+    # print(new_dest)
+    # f.write("possible destinations :" + str(new_dest))
+    # f.write("possible Source :" + str(new_src))
     
 def binary_search(h,l,val,src,dest):
     m=(h+l)/2
@@ -236,7 +270,7 @@ def binary_search(h,l,val,src,dest):
 
 
 if __name__ == "__main__":
-    trx_amt=21234.45678
+    trx_amt=1000
     # init(10000)
     trx_amt_test(trx_amt)
 
