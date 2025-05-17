@@ -1,0 +1,82 @@
+
+# def get_outgoing_neighbors(path):
+#     outgoing_edges = set()
+#     for node in path[:-1]:
+#         for neighbor in G.successors(node):
+#             # if neighbor in path:
+#             #     continue
+#             outgoing_edges.add((node, neighbor))
+#     return outgoing_edges
+
+# def draw_graph(shortest_path,trx_amt):
+#     plt.figure(figsize=(10, 6))
+#     pos=nx.random_layout(G)
+#     outgoing_edges = get_outgoing_neighbors(shortest_path)
+#     nodes=[]
+#     edge={}
+#     for i in outgoing_edges:
+#         nodes.append(i[1])
+#         if i[0] in edge:
+#             edge[i[0]].append(i[1])
+#         else:
+#             edge[i[0]]=[i[1]]
+
+#     with open("graph.txt","a+") as f:
+#         f.write(f"For transaction {trx_amt}\n")
+#         sh=""
+#         for i in edge:
+#             f.write(f"Starting from Node : {i}\n")
+#             for j in edge[i]:
+#                 data=G.get_edge_data(i,j)
+#                 cost=edge_cost("","", data, trx_amt)
+#                 f.write(f"address {j} \ndata: {data} \ncost: {cost}\n\n")
+#                 if j in shortest_path:
+#                     sh=j
+#             f.write(f"id-{shortest_path.index(sh)} starting from {i} shortest path chosen {sh} \n")
+#             f.write("-------------------------------\n")
+
+#     nx.draw_networkx_edges(G,pos=pos,  edgelist=list(outgoing_edges), edge_color="black", width=1, alpha=0.7)
+
+#     nx.draw_networkx_nodes(G, pos=pos, nodelist=shortest_path, node_color="red")
+
+#     path_edges = list(zip(shortest_path, shortest_path[1:]))
+#     nx.draw_networkx_edges(G, pos=pos, edgelist=path_edges, edge_color="blue", width=2)
+#     nx.draw_networkx_nodes(G, pos=pos, nodelist=nodes, node_color="black", node_size=4)
+#     plt.savefig("highlighted_shortest_path.png")  
+
+
+ # Entropy Analysis
+    # f.write("\nEntropy Analysis\n")
+    # H = 0
+    # s = sum(l_src.values())
+    # print("Entropy analysis")
+    # H=0
+    # print("P(Bi|A)=P(A|Bi)/sum(P(A|Bk))")
+    #####################
+    # for i in sources:
+    #     a=list(nx.shortest_path(G,source=i,weight=lambda u,v,d:edge_cost(u,v,d,trx_amt)))
+    #     u=0
+    #     for i in a:
+    #         if n in i:
+    #             if n !=i[-1]:
+    #                 u+=1
+    #     print(f"P(A|Bi)= {u/len(a)}")
+    #     pabi=u/len(a)
+    #     s=0
+    #     for j in sources:
+    #         b=list(nx.shortest_path(G,source=j,weight=lambda u,v,d:edge_cost(u,v,d,trx_amt)))
+    #         u=0
+    #         for i in b:
+    #             if n in i:
+    #                 if n !=i[-1]:
+    #                     u+=1
+    #         s+=u/len(b)
+    #     H+=((pabi/s)*math.log2(pabi/s))
+    # print(-1*H)
+    ###############
+    # if s > 0:
+    #     for i in l_src:
+    #         P_A_Bi = l_src[i] / s[i]
+    #         H += P_A_Bi * math.log2(P_A_Bi)        
+    #     f.write(f"\nEntropy: { -H}\n")
+    # return -H

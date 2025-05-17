@@ -7,7 +7,7 @@ from math import prod
 G = nx.DiGraph()
 
 
-a="test_less_v2"
+a="test"
 
 def edge_cost(u, v, data, trx_amt):
     cost = (trx_amt * ((data.get("prop_fee",0) / 1e6) + (data.get("timelock", 0) * data.get("rf", 1e-9)))) +  data.get("base_fee", 0) + data.get("bias", 1)
@@ -45,7 +45,7 @@ def calculate_fee_at_node(path, trx_amt, G,node):
 def init(amt=0):
     global G
     G=nx.DiGraph()
-    with open("now_latest.json", encoding="utf-8") as f:
+    with open("Data/Graph_new.json", encoding="utf-8") as f:
         data = json.load(f)
     for node in data["nodes"]:
         G.add_node(node["pub_key"])
@@ -57,6 +57,7 @@ def init(amt=0):
     for edge in data["edges"]:
         if int(edge["capacity"])>=amt:
             if edge["node1_policy"] == None:
+                continue
                 G.add_edge(edge["node1_pub"], edge["node2_pub"],capacity=int(edge["capacity"]),
                                                                             base_fee=base_fee,
                                                                             prop_fee=prop_fee,
@@ -73,6 +74,7 @@ def init(amt=0):
                                                                             rf=rf,
                                                                             bias=bias)
             if edge["node2_policy"] == None:
+                continue
                 G.add_edge(edge["node2_pub"], edge["node1_pub"],capacity=int(edge["capacity"]),
                                                                             base_fee=base_fee,
                                                                             prop_fee=prop_fee,

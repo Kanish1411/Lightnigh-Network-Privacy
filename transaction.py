@@ -43,7 +43,7 @@ def calculate_fee_at_node(path, trx_amt, G,node):
 def init(amt=0):
     global G
     G=nx.DiGraph()
-    with open("now_latest.json", encoding="utf-8") as f:
+    with open("Data/Graph_new.json", encoding="utf-8") as f:
         data = json.load(f)
     for node in data["nodes"]:
         G.add_node(node["pub_key"])
