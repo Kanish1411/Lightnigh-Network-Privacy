@@ -80,7 +80,7 @@ def init_unif_normal(amt):
                                                                             bias=bias)
             else:
                 if edge["node1_policy"]["disabled"] == True:
-                    G.add_edge(edge["node1_pub"], edge["node2_pub"], capacity=int(edge["capacity"]/2),
+                    G.add_edge(edge["node1_pub"], edge["node2_pub"], capacity=int(edge["capacity"])/2,
                                                                             base_fee=int(edge["node1_policy"]["fee_base_msat"]),
                                                                             prop_fee=int(edge["node1_policy"]["fee_rate_milli_msat"]),
                                                                             timelock=int(edge["node1_policy"]["time_lock_delta"]),
@@ -166,3 +166,5 @@ def init_Bimodal(amt):
     except:
         pass
     return G
+
+
