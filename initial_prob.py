@@ -103,7 +103,7 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, f, csv_filename="probabilities.
 
     
 
-def find_initial_probability(G,trx_amt,op,c):
+def find_initial_probability(G,a,trx_amt,op,c):
     global unused_path
     with open(op+"/paths"+str(trx_amt)+".txt", "a+") as f:
         while(1):
@@ -118,13 +118,17 @@ def find_initial_probability(G,trx_amt,op,c):
                         pass
         att=random.choice(l[1:-1]) 
         ind=l.index(att)
+        with open("Data.csv", mode='a') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(['Source', 'Destination', 'Attacker',"Graph"])
+                writer.writerow([src1,dest,att,a]) 
         find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,f,c)
 
 
-for i in ["Bimodal","Uniform_Normal"]:
+for i in ["Bimodal","Normal","Uniform_Normal"]:
     os.mkdir(i)
     for j in ["0","10","100","1000","10000"]:
         a="graph_"+i+"_"+j+".pkl"
         with open("Graphs/" + a, "rb") as f:
-            G = pickle.load(f)
-        find_initial_probability(G,int(j),i,i+"_"+j)
+                 G = pickle.load(f)
+        find_initial_probability(G,a,int(j),i,i+"_"+j)
