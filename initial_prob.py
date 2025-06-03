@@ -125,7 +125,7 @@ def find_initial_probability(G,a,trx_amt,op,c):
         find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,f,c)
 
 
-for i in ["Bimodal","Normal","Uniform_Normal"]:
+for i in ["Normal","Uniform_Normal"]:
     os.mkdir(i)
     for j in ["0","10","100","1000","10000"]:
         a="graph_"+i+"_"+j+".pkl"
