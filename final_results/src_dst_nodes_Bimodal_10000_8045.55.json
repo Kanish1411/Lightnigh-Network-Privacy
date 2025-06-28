@@ -1,0 +1,11 @@
+{
+    "amount": "8045.55",
+    "probability": 0.3333333333333333,
+    "src_nodes": [
+        "0394693794f93d1e9b1034ab6d217af57a0de3d8ab18e3489d07c6819b2a780944"
+    ],
+    "dst_nodes": [
+        "02bd374d2e1e347adc035a48b21ee1ccbc4060f96e118e234baa585125e43bd165",
+        "0388e0278a212284bcaf7c987b873e8c30837e13f7e4e815ba67c0a470c0e92adb"
+    ]
+}
