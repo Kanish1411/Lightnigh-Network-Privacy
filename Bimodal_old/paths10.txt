@@ -1,5 +1,0 @@
-
-Most Probable Source: None, Most Probable Destination: None
-
-Average probability of source: 0.0
-Average probability of destination: 0.0
