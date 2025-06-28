@@ -97,13 +97,25 @@ for i in graph_types:
                 print("source set length (After) ", src_after_len)
                 print("Destination set length (After) ", dst_after_len)
                 print("___")
+                os.makedirs("final_results", exist_ok=True)
+                filename = f"final_results/src_dst_nodes_{i}_{j}_{k[0]}.json"
 
+                # Extract only the keys (node addresses)
+                result_data = {
+                    "amount": k[0],
+                    "probability": k[1],
+                    "src_nodes": list(s.keys()),
+                    "dst_nodes": list(d.keys())
+                }
+                with open(filename, "w") as outfile:
+                    json.dump(result_data, outfile, indent=4)
                 # Store in length_stats for LaTeX table
                 length_stats[j][i] = {
                     "src_after": src_after_len,
                     "dst_after": dst_after_len
                 }
-                break  # Only take stats for the highest probable amount with non-zero prob
+
+                
 
 # ------------------ LaTeX TABLE 1: Probability Table ---------------------
 # print(r"""\begin{table}[h!]
@@ -138,28 +150,28 @@ for i in graph_types:
 # \end{table}""")
 
 # ------------------ LaTeX TABLE 2: Set Length Table ---------------------
-print(r"""\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
-\cline{2-7}
- & Source & Destination &  Source & Destination & Source & Destination \\
-\hline""")
+# print(r"""\begin{table}[h!]
+# \centering
+# \begin{tabular}{|c|c|c|c|c|c|c|}
+# \hline
+# \multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
+# \cline{2-7}
+#  & Source & Destination &  Source & Destination & Source & Destination \\
+# \hline""")
 
-for amt in amounts:
-    row = [amt]
-    for gt in graph_types:
-        if length_stats[amt][gt]:
-            stats = length_stats[amt][gt]
-            row.append(str(stats['src_after']))
-            row.append(str(stats['dst_after']))
-        else:
-            row.append("-")
-            row.append("-")
-    print(" & ".join(row) + r" \\")
-print(r"\hline")
+# for amt in amounts:
+#     row = [amt]
+#     for gt in graph_types:
+#         if length_stats[amt][gt]:
+#             stats = length_stats[amt][gt]
+#             row.append(str(stats['src_after']))
+#             row.append(str(stats['dst_after']))
+#         else:
+#             row.append("-")
+#             row.append("-")
+#     print(" & ".join(row) + r" \\")
+# print(r"\hline")
 
-print(r"""\end{tabular}
-\caption{Source and Destination Set Lengths After Node Frequency Filtering}
-\end{table}""")
+# print(r"""\end{tabular}
+# \caption{Source and Destination Set Lengths After Node Frequency Filtering}
+# \end{table}""")
