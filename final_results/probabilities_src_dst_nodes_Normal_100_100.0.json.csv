@@ -1,0 +1,16 @@
+Type,Node,Probability
+Source,036d58938a10fbe3ee6ff547246ff5a016b2ee378b43782b95bd184c163247aa9d,1.0
+Probability of Source 036d58938a10fbe3ee6ff547246ff5a016b2ee378b43782b95bd184c163247aa9d: 1.0
+Destination,0297662df43ca0bd696810a321509ada7502a0765d86c7e268833b3e32b01b72b4,1.0
+Probability of Destination 0297662df43ca0bd696810a321509ada7502a0765d86c7e268833b3e32b01b72b4: 1.0
+
+Most Probable Source: 036d58938a10fbe3ee6ff547246ff5a016b2ee378b43782b95bd184c163247aa9d, Most Probable Destination: 0297662df43ca0bd696810a321509ada7502a0765d86c7e268833b3e32b01b72b4
+
+Average probability of source: 0.5
+Average probability of destination: 0.5
+
+Summary,,
+Most Probable Source,036d58938a10fbe3ee6ff547246ff5a016b2ee378b43782b95bd184c163247aa9d,
+Most Probable Destination,0297662df43ca0bd696810a321509ada7502a0765d86c7e268833b3e32b01b72b4,
+Average Source Probability,,0.5
+Average Destination Probability,,0.5
