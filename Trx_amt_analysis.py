@@ -36,7 +36,7 @@ for i in graph_types:
         except FileNotFoundError:
             continue
 
-        folder = f"test_{i}_{j}"
+        folder = f"test/{i}_{j}"
         try:
             with open(folder + "/data.json", "r") as jfile:
                 data = json.load(jfile)
@@ -118,60 +118,60 @@ for i in graph_types:
                 
 
 # ------------------ LaTeX TABLE 1: Probability Table ---------------------
-# print(r"""\begin{table}[h!]
-# \centering
-# \begin{tabular}{|c|c|c|c|c|c|c|}
-# \hline
-# \multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
-# \cline{2-7}
-#  & Amount & Probability & Amount & Probability & Amount & Probability  \\
-# \hline""")
+print(r"""\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
+\cline{2-7}
+ & Amount & Probability & Amount & Probability & Amount & Probability  \\
+\hline""")
 
-# for amt in amounts:
-#     for i in range(3):
-#         row = []
-#         if i == 0:
-#             row.append(r"\multirow{3}{*}{" + amt + "}")
-#         else:
-#             row.append("")
+for amt in amounts:
+    for i in range(3):
+        row = []
+        if i == 0:
+            row.append(r"\multirow{3}{*}{" + amt + "}")
+        else:
+            row.append("")
 
-#         for gt in ["Normal", "Uniform_Normal", "Bimodal"]:
-#             if i < len(all_results[amt][gt]):
-#                 a, p = all_results[amt][gt][i]
-#                 row.append(f"{a} & {p:.4f}")
-#             else:
-#                 row.append("&")
+        for gt in ["Normal", "Uniform_Normal", "Bimodal"]:
+            if i < len(all_results[amt][gt]):
+                a, p = all_results[amt][gt][i]
+                row.append(f"{a} & {p:.4f}")
+            else:
+                row.append("&")
 
-#         print(" & ".join(row) + r" \\")
-#     print(r"\hline")
+        print(" & ".join(row) + r" \\")
+    print(r"\hline")
 
-# print(r"""\end{tabular}
-# \caption{Top 3 Amounts by Maximum Probability for Each Graph Type}
-# \end{table}""")
+print(r"""\end{tabular}
+\caption{Top 3 Amounts by Maximum Probability for Each Graph Type}
+\end{table}""")
 
 # ------------------ LaTeX TABLE 2: Set Length Table ---------------------
-# print(r"""\begin{table}[h!]
-# \centering
-# \begin{tabular}{|c|c|c|c|c|c|c|}
-# \hline
-# \multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
-# \cline{2-7}
-#  & Source & Destination &  Source & Destination & Source & Destination \\
-# \hline""")
+print(r"""\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
+\cline{2-7}
+ & Source & Destination &  Source & Destination & Source & Destination \\
+\hline""")
 
-# for amt in amounts:
-#     row = [amt]
-#     for gt in graph_types:
-#         if length_stats[amt][gt]:
-#             stats = length_stats[amt][gt]
-#             row.append(str(stats['src_after']))
-#             row.append(str(stats['dst_after']))
-#         else:
-#             row.append("-")
-#             row.append("-")
-#     print(" & ".join(row) + r" \\")
-# print(r"\hline")
+for amt in amounts:
+    row = [amt]
+    for gt in graph_types:
+        if length_stats[amt][gt]:
+            stats = length_stats[amt][gt]
+            row.append(str(stats['src_after']))
+            row.append(str(stats['dst_after']))
+        else:
+            row.append("-")
+            row.append("-")
+    print(" & ".join(row) + r" \\")
+print(r"\hline")
 
-# print(r"""\end{tabular}
-# \caption{Source and Destination Set Lengths After Node Frequency Filtering}
-# \end{table}""")
+print(r"""\end{tabular}
+\caption{Source and Destination Set Lengths After Node Frequency Filtering}
+\end{table}""")
