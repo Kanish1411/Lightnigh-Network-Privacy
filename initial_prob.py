@@ -33,7 +33,7 @@ dest=[]
 
 import csv
 
-def find_source_dest_pair(prev, n, nxt, trx_amt, f, csv_filename="probabilities.csv"):
+def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv"):
     global sources, dest
 
     # Source identification
@@ -79,20 +79,16 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, f, csv_filename="probabilities.
             for i in l_src:
                 prob = l_src[i] / s
                 writer.writerow(['Source', i, prob])
-                f.write(f"Probability of Source {i}: {prob}\n")
                 u += 1
                 s1 += prob
 
             for i in l_dest:
                 prob = l_dest[i] / s
                 writer.writerow(['Destination', i, prob])
-                f.write(f"Probability of Destination {i}: {prob}\n")
                 v += 1
                 d1 += prob
 
         # Write most probable and averages
-        f.write(f"\nMost Probable Source: {src}, Most Probable Destination: {d}\n")
-        f.write(f"\nAverage probability of source: {s1/u}\nAverage probability of destination: {d1/v}\n")
 
         writer.writerow([])
         writer.writerow(['Summary', '', ''])
@@ -103,9 +99,8 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, f, csv_filename="probabilities.
 
     
 
-def find_initial_probability(G,a,trx_amt,op,c):
-    global unused_path
-    with open(op+"/paths"+str(trx_amt)+".txt", "a+") as f:
+def find_initial_probability(G,a,trx_amt,c):
+        global unused_path
         while(1):
                 src1 = random.choice(list(G.nodes()))
                 dest = random.choice(list(G.nodes()))
@@ -122,7 +117,7 @@ def find_initial_probability(G,a,trx_amt,op,c):
                 writer = csv.writer(csvfile)
                 writer.writerow(['Source', 'Destination', 'Attacker',"Graph"])
                 writer.writerow([src1,dest,att,a]) 
-        find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,f,c)
+        find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,c)
 
 
 for i in ["Normal","Uniform_Normal","Bimodal"]:
@@ -131,4 +126,4 @@ for i in ["Normal","Uniform_Normal","Bimodal"]:
         a="graph_"+i+"_"+j+".pkl"
         with open("Graphs/" + a, "rb") as f:
                  G = pickle.load(f)
-        find_initial_probability(G,a,int(j),i,i+"_"+j)
+        find_initial_probability(G,a,int(j),i+"_"+j)

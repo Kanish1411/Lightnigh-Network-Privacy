@@ -42,8 +42,8 @@ def prob_after(filename,a,b):
     d = max(l_dest, key=l_dest.get, default=None)
     s1 = 0
     d1 = 0
-    u = 1
-    v = 1
+    u = 0
+    v = 0
     csv_filename = f"final_results/probabilities_{filename}.csv"
     # Writing to CSV
     with open(csv_filename, mode='w', newline='') as f:

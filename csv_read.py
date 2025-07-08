@@ -15,8 +15,11 @@ def csv_ext(a):
     # Print max probability
     print("Max probability in Source:", round(source_df["Probability"].max(),4))
     print("Max probability in Destination:", round(destination_df["Probability"].max(),4))
+    # Print average probability
+    print("Average probability in Source:", round(source_df["Probability"].mean(),4), "&" ,round(destination_df["Probability"].mean(),4))
+    print("Average probability in Destination:", round(destination_df["Probability"].mean(),4))
 
-for i in ["Bimodal"]:
-    for j in ["0","10","100","1000","10000"]:
+for i in ["Bimodal","Uniform_Normal","Normal"]:
+    for j in ["10000"]:
         a=i+"_"+j
         csv_ext(a)

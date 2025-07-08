@@ -1,5 +1,7 @@
 
+import csv
 import json
+import pickle
 import random
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -57,11 +59,10 @@ def find_source_dest_pair(prev, n, nxt,trx_amt):
             dest.append(i[-1])
     return sources,dest
 
-def trx_amt_test(trx_amt,G,file):
-    print(len(G.nodes()),len(G.edges))
+def trx_amt_test(trx_amt,G,file,rows):
     while(1):
-        src1 = random.choice(list(G.nodes()))
-        dest = random.choice(list(G.nodes()))
+        src1 = rows[0]["Source"]
+        dest =  rows[0]["Destination"]
         if src1!=dest:
             try:
                 l=nx.shortest_path(G,source=src1,target=dest,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
@@ -69,9 +70,8 @@ def trx_amt_test(trx_amt,G,file):
                     break
             except:
                 break
-    att=random.choice(l[1:-1])
+    att=rows[0]["Attacker"]
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
-    print(actual_amt)
     ind=l.index(att)
     src,dests=find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt)
     new_dest={}
@@ -132,9 +132,7 @@ def trx_amt_test(trx_amt,G,file):
             new_dest[round(val,ndigits=2)].append(d)
         except:
             continue
-    print(len(dests),len(new_dest))
     val=0
-    print(dest)
 
     os.mkdir(file)
     with open(file+"/data.json", "a") as j:
@@ -164,12 +162,38 @@ def binary_search(h,l,val,src,dest):
     if l==h:
         return -1
 
+with open("Data.csv", "r") as csvfile:
+    reader = csv.DictReader(csvfile)
+    rows_by_graph = {}
 
-for i in ["Normal","Uniform_Normal","Bimodal"]:
-    os.mkdir(i)
-    for j in ["10000"]:
-        a="graph_"+i+"_"+j+".pkl"
-        with open("Graphs/" + a, "rb") as f:
-                 G = pickle.load(f)
-        trx_amt_test(trx_amt=int(j),G=G,file=i+"_"+j)
+    for row in reader:
+        graph_file = row["Graph"]
+        if graph_file not in rows_by_graph:
+            rows_by_graph[graph_file] = []
+        rows_by_graph[graph_file].append(row)
+
+# Your original loop
+os.makedirs("test", exist_ok=True)  # Ensure the directory exists
+for i in ["Normal", "Uniform_Normal", "Bimodal"]:
+    
+    for j in ["10000"]:  # You can change this to include other amounts
+        graph_filename = f"graph_{i}_{j}.pkl"
+        graph_path = os.path.join("Graphs", graph_filename)
+
+        print(f"Processing: {graph_filename}")
+
+        if os.path.exists(graph_path):
+            with open(graph_path, "rb") as f:
+                G = pickle.load(f)
+
+            trx_amt = int(j)
+            key = graph_filename
+
+            if key in rows_by_graph:
+                matched_rows = rows_by_graph[key]
+                trx_amt_test(trx_amt=trx_amt, G=G, file=f"test/{i}_{j}", rows=matched_rows)
+            else:
+                print(f"No matching data rows found for: {key}")
+        else:
+            print(f"Graph file not found: {graph_path}")
 

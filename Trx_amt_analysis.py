@@ -20,7 +20,7 @@ def calculate_fee_at_node(path, trx_amt, G, node):
             return amt_needed
     return None
 
-amounts = ["10", "100", "1000", "10000"]
+amounts = [ "10000"]
 graph_types = ["Normal", "Uniform_Normal", "Bimodal"]
 
 all_results = {amt: {gt: [] for gt in graph_types} for amt in amounts}

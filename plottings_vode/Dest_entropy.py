@@ -2,15 +2,15 @@ import matplotlib.pyplot as plt
 
 # Table 5: Destination Entropy (Before Experiment)
 amounts_5 = [ "10", "100", "1000", "10000"]
-normal_5 = [ 2.271973, 0.0, 12.475252, 12.332684]
-uniform_5 = [ 8.290019, 4.572688, 0.0, 5.866716]
-bimodal_5 = [ 2.040622, 0.0, 3.580163, 12.257639]
+normal_5 = [ 2.271973, 0.0, 12.475252, 2.130993]
+uniform_5 = [ 8.290019, 4.572688, 0.0, 0.967956]
+bimodal_5 = [ 2.040622, 0.0, 3.580163, 0.505942]
 
 # Table 11: Destination Entropy (After Experiment)
 amounts_11 = ["10", "100", "1000", "10000"]
-normal_11 = [1.333708, 0.0, 0.0, 1.584963]
-uniform_11 = [6.285402, 4.445615, 0.0, None]  # None for missing value
-bimodal_11 = [1.62055, 0.0, 2.304591, 1.584963]
+normal_11 = [1.333708, 0.0, 0.0, 2.113283 ]
+uniform_11 = [6.285402, 4.445615, 0.0, 1.537271]  # None for missing value
+bimodal_11 = [1.62055, 0.0, 2.304591, 0.010988]
 
 # Plotting
 plt.figure(figsize=(10, 6))
