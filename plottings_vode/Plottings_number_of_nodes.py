@@ -4,20 +4,20 @@ import matplotlib.pyplot as plt
 amounts = ["10", "100", "1000", "10000"]
 
 # Table 1: Original node counts
-normal_source = [178, 1, 3, 3]
-normal_dest = [15, 1, 5701, 5195]
-uniform_source = [1, 45, 4367, 1331]
-uniform_dest = [313, 24, 1, 64]
-bimodal_source = [925, 20, 57, 3]
-bimodal_dest = [6, 1, 12, 5095]
+normal_source = [178, 1, 3, 4]
+normal_dest = [15, 1, 5701, 1822]
+uniform_source = [1, 45, 4367, 15]
+uniform_dest = [313, 24, 1, 1884]
+bimodal_source = [925, 20, 57, 4]
+bimodal_dest = [6, 1, 12, 2376]
 
 # Table 2: Filtered node counts
 normal_source_f = [20, 1, 3, 3]
 normal_dest_f = [3, 1, 1, 1]
-uniform_source_f = [1, 44, 4367, 0]  # '-' treated as 0
-uniform_dest_f = [78, 22, 1, 0]
-bimodal_source_f = [920, 20, 56, 3]
-bimodal_dest_f = [4, 1, 5, 1]
+uniform_source_f = [1, 44, 4367, 1]  # '-' treated as 0
+uniform_dest_f = [78, 22, 1, 2]
+bimodal_source_f = [920, 20, 56, 1]
+bimodal_dest_f = [4, 1, 5, 892]
 
 # Styling helper
 def plot_graph(title, source, dest, source_f, dest_f):

@@ -11,7 +11,7 @@ def compute_entropy(csv_filename, node_type):
             for row in reader:
                 if len(row) < 3:
                     continue  # Skip incomplete rows
-                if row[0].strip() != node_type:
+                if row[0].strip() == node_type:
                     continue  # Only process specified node type
 
                 try:
@@ -39,11 +39,11 @@ results = {
 # Search and compute entropy
 for amt in amounts:
     for dist in distributions:
-        pattern = f"probabilities_src_dst_nodes_{dist}_{amt}_"
+        pattern = f"probabilities_src_dst_nodes_{dist}_{amt}"
         matching_files = [f for f in os.listdir("./final_results") if f.startswith(pattern)]
 
         if matching_files:
-            latest_file = sorted(matching_files)[-1]  # Take the last file if multiples
+            latest_file = sorted(matching_files)[0]  # Take the last file if multiples
             full_path = os.path.join("final_results", latest_file)
 
             src_entropy = compute_entropy(full_path, "Source")
