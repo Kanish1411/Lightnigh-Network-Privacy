@@ -95,10 +95,14 @@ def find_initial_probability(G,a,trx_amt,c):
         find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,c)
 
 
-for i in ["Normal","Uniform_Normal","Bimodal"]:
-    os.mkdir(i)
-    for j in ["10000"]:
-        a="graph_"+i+"_"+j+".pkl"
-        with open("Graphs/" + a, "rb") as f:
-                 G = pickle.load(f)
-        find_initial_probability(G,a,int(j),i+"_"+j)
+if not os.path.exists("initial_probability"):
+    os.mkdir("initial_probability")
+    for i in ["Normal","Uniform_Normal","Bimodal"]:
+        for j in ["10","100","1000","10000"]:
+            a="graph_"+i+"_"+j+".pkl"
+            with open("Graphs/" + a, "rb") as f:
+                    G = pickle.load(f)
+            find_initial_probability(G,a,int(j),"initial_probability/"+i+"_"+j)
+else:
+    print(f"Folder 'initial_probability' already exists. Skipping execution.")
+

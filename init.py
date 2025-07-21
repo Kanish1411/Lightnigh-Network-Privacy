@@ -208,7 +208,6 @@ output_folder = "Graphs"
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
     for amt in [10, 100, 1000, 10000]:
-        print("aaa")
         init_unif_normal(amt, graph_file, netstats_file)
 else:
     print(f"Folder '{output_folder}' already exists. Skipping execution.")

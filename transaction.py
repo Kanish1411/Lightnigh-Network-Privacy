@@ -2,12 +2,9 @@
 import csv
 import json
 import pickle
-import random
 import networkx as nx
-import matplotlib.pyplot as plt
-import numpy as np
-from math import prod
 import os
+
 G = nx.DiGraph()
 
 def edge_cost(u, v, data, trx_amt):
@@ -173,10 +170,9 @@ with open("Data.csv", "r") as csvfile:
         rows_by_graph[graph_file].append(row)
 
 # Your original loop
-os.makedirs("test", exist_ok=True)  # Ensure the directory exists
+os.makedirs("Transaction_amt_test", exist_ok=True)  # Ensure the directory exists
 for i in ["Normal", "Uniform_Normal", "Bimodal"]:
-    
-    for j in ["10000"]:  # You can change this to include other amounts
+    for j in ["10","100","1000","10000"]: 
         graph_filename = f"graph_{i}_{j}.pkl"
         graph_path = os.path.join("Graphs", graph_filename)
 
