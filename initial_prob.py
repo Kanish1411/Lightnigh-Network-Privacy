@@ -4,10 +4,12 @@ import matplotlib.pyplot as plt
 from init import *
 import os
 import csv
+import csv
 
 sources=[]
 dest=[]
 
+def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv"):
 def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv"):
     global sources, dest
 
@@ -76,6 +78,8 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv
 
 def find_initial_probability(G,a,trx_amt,c):
         global unused_path
+def find_initial_probability(G,a,trx_amt,c):
+        global unused_path
         while(1):
                 src1 = random.choice(list(G.nodes()))
                 dest = random.choice(list(G.nodes()))
@@ -92,6 +96,7 @@ def find_initial_probability(G,a,trx_amt,c):
                 writer = csv.writer(csvfile)
                 writer.writerow(['Source', 'Destination', 'Attacker',"Graph"])
                 writer.writerow([src1,dest,att,a]) 
+        find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,c)
         find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt,c)
 
 
