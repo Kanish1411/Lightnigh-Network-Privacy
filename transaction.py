@@ -54,13 +54,11 @@ def find_source_dest_pair(prev, n, nxt,trx_amt):
             sources.append(i[0])
     # Destination finding
     paths = nx.single_source_dijkstra_path(G, prev,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt)) 
-    paths = nx.single_source_dijkstra_path(G, prev,weight=lambda u, v, d: edge_cost(u, v, d, trx_amt)) 
     for i in paths.values():
         if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
             dest.append(i[-1])
     return sources,dest
 
-def trx_amt_test(trx_amt,G,file,rows):
 def trx_amt_test(trx_amt,G,file,rows):
     while(1):
         src1 = rows[0]["Source"]
@@ -73,9 +71,6 @@ def trx_amt_test(trx_amt,G,file,rows):
                 if len(l)>=3:
                     break
             except:
-                break
-    att=rows[0]["Attacker"]
-    actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
                 break
     att=rows[0]["Attacker"]
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
@@ -143,11 +138,7 @@ def trx_amt_test(trx_amt,G,file,rows):
 
     os.mkdir(file)
     with open(file+"/data.json", "a") as j:
-
-    os.mkdir(file)
-    with open(file+"/data.json", "a") as j:
         json.dump(new_dest, j)
-    with open(file+"/src.json", "a") as j:
     with open(file+"/src.json", "a") as j:
         json.dump(src, j)
     misc={}
@@ -158,7 +149,6 @@ def trx_amt_test(trx_amt,G,file,rows):
     misc["amt"]=actual_amt
     misc["dest"]=dest
 
-    with open(file+"/misc.json", "a") as j:
     with open(file+"/misc.json", "a") as j:
         json.dump(misc, j)
     
