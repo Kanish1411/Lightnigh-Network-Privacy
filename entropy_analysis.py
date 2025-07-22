@@ -10,24 +10,24 @@ def compute_entropy(csv_filename, node_type):
             next(reader)  # Skip header
             for row in reader:
                 if len(row) < 3:
-                    continue  # Skip incomplete rows
+                    continue
                 if row[0].strip() == node_type:
-                    continue  # Only process specified node type
+                    continue
 
                 try:
                     prob = float(row[2])
                     if prob > 0:
                         entropy += prob * math.log2(prob)
                 except ValueError:
-                    continue  # Skip rows with invalid probability
+                    continue
         return round(-entropy, 6)
     except FileNotFoundError:
-        return None  # Return None if file is missing
+        return None
 
 amounts = ["10", "100", "1000", "10000"]
 distributions = ["Normal", "Uniform_Normal", "Bimodal"]
 
-# Initialize nested dictionary to store entropy values
+# Initialize results dictionary
 results = {
     amt: {
         dist: {'Source': '-', 'Destination': '-'}
@@ -36,14 +36,14 @@ results = {
     for amt in amounts
 }
 
-# Search and compute entropy
+# Compute entropy and fill results
 for amt in amounts:
     for dist in distributions:
         pattern = f"probabilities_src_dst_nodes_{dist}_{amt}"
         matching_files = [f for f in os.listdir("./final_results") if f.startswith(pattern)]
 
         if matching_files:
-            latest_file = sorted(matching_files)[0]  # Take the last file if multiples
+            latest_file = sorted(matching_files)[0]
             full_path = os.path.join("final_results", latest_file)
 
             src_entropy = compute_entropy(full_path, "Source")
@@ -52,24 +52,24 @@ for amt in amounts:
             results[amt][dist]['Source'] = str(src_entropy) if src_entropy is not None else '-'
             results[amt][dist]['Destination'] = str(dst_entropy) if dst_entropy is not None else '-'
 
-# Print LaTeX table
-print("\\begin{table}[h!]")
-print("\\centering")
-print("\\begin{tabular}{|c|c|c|c|c|c|c|}")
-print("\\hline")
-print("\\multirow{2}{*}{Amount} & \\multicolumn{2}{c|}{Normal} & \\multicolumn{2}{c|}{Uniform} & \\multicolumn{2}{c|}{Bimodal} \\\\")
-print("\\cline{2-7}")
-print(" & Source & Destination & Source & Destination & Source & Destination \\\\")
-print("\\hline")
+# Ensure entropy folder exists
+os.makedirs("entropy", exist_ok=True)
 
-for amt in amounts:
-    row = f"{amt}"
+# Write to CSV
+csv_file_path = os.path.join("entropy", "entropy_after.csv")
+with open(csv_file_path, mode="w", newline='') as file:
+    writer = csv.writer(file)
+    header = ["Amount"]
     for dist in distributions:
-        row += " & " + str(results[amt][dist]['Source']) + " & " + str(results[amt][dist]['Destination'])
-    row += " \\\\"
-    print(row)
+        header.append(f"{dist}_Source")
+        header.append(f"{dist}_Destination")
+    writer.writerow(header)
 
-print("\\hline")
-print("\\end{tabular}")
-print("\\caption{Source and Destination Entropy for different distributions and amounts}")
-print("\\end{table}")
+    for amt in amounts:
+        row = [amt]
+        for dist in distributions:
+            row.append(results[amt][dist]['Source'])
+            row.append(results[amt][dist]['Destination'])
+        writer.writerow(row)
+
+print(f"Entropy data written to '{csv_file_path}'")

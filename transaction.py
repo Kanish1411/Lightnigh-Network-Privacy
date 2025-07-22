@@ -1,14 +1,11 @@
 
 import csv
-
-import csv
 import json
 import pickle
 import networkx as nx
 import os
 
 G = nx.DiGraph()
-
 
 def edge_cost(u, v, data, trx_amt):
     cost = (trx_amt * ((data.get("prop_fee",0) / 1e6) + (data.get("timelock", 0) * data.get("rf", 1e-9)))) +  data.get("base_fee", 0) + data.get("bias", 1)
@@ -61,8 +58,6 @@ def find_source_dest_pair(prev, n, nxt,trx_amt):
 
 def trx_amt_test(trx_amt,G,file,rows):
     while(1):
-        src1 = rows[0]["Source"]
-        dest =  rows[0]["Destination"]
         src1 = rows[0]["Source"]
         dest =  rows[0]["Destination"]
         if src1!=dest:

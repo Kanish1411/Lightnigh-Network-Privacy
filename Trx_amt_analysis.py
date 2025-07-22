@@ -115,63 +115,36 @@ for i in graph_types:
                     "dst_after": dst_after_len
                 }
 
-                
 
-# ------------------ LaTeX TABLE 1: Probability Table ---------------------
-print(r"""\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
-\cline{2-7}
- & Amount & Probability & Amount & Probability & Amount & Probability  \\
-\hline""")
+# ------------------ CSV Export ---------------------
 
-for amt in amounts:
-    for i in range(3):
-        row = []
-        if i == 0:
-            row.append(r"\multirow{3}{*}{" + amt + "}")
-        else:
-            row.append("")
+# --- Create output directory ---
+os.makedirs("final_results_csv", exist_ok=True)
 
-        for gt in ["Normal", "Uniform_Normal", "Bimodal"]:
-            if i < len(all_results[amt][gt]):
-                a, p = all_results[amt][gt][i]
-                row.append(f"{a} & {p:.4f}")
+# ------------------ CSV 1: Top 3 Probabilities ---------------------
+prob_csv_path = "final_results_csv/top3_probabilities.csv"
+with open(prob_csv_path, mode="w", newline='') as file:
+    writer = csv.writer(file)
+    header = ["Amount", "Graph Type", "Rank", "Top Amount", "Probability"]
+    writer.writerow(header)
+    for amt in amounts:
+        for gt in graph_types:
+            top3 = all_results[amt][gt]
+            for rank, (a, p) in enumerate(top3, start=1):
+                writer.writerow([amt, gt, rank, a, f"{p:.4f}"])
+print(f"Top 3 probabilities saved to '{prob_csv_path}'")
+
+# ------------------ CSV 2: Source/Destination Set Lengths ---------------------
+length_csv_path = "final_results_csv/src_dst_lengths.csv"
+with open(length_csv_path, mode="w", newline='') as file:
+    writer = csv.writer(file)
+    header = ["Amount", "Graph Type", "Source Set Length", "Destination Set Length"]
+    writer.writerow(header)
+    for amt in amounts:
+        for gt in graph_types:
+            if length_stats[amt][gt]:
+                stats = length_stats[amt][gt]
+                writer.writerow([amt, gt, stats['src_after'], stats['dst_after']])
             else:
-                row.append("&")
-
-        print(" & ".join(row) + r" \\")
-    print(r"\hline")
-
-print(r"""\end{tabular}
-\caption{Top 3 Amounts by Maximum Probability for Each Graph Type}
-\end{table}""")
-
-# ------------------ LaTeX TABLE 2: Set Length Table ---------------------
-print(r"""\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\multirow{2}{*}{Amount} & \multicolumn{2}{c|}{Normal} & \multicolumn{2}{c|}{Uniform} & \multicolumn{2}{c|}{Bimodal} \\
-\cline{2-7}
- & Source & Destination &  Source & Destination & Source & Destination \\
-\hline""")
-
-for amt in amounts:
-    row = [amt]
-    for gt in graph_types:
-        if length_stats[amt][gt]:
-            stats = length_stats[amt][gt]
-            row.append(str(stats['src_after']))
-            row.append(str(stats['dst_after']))
-        else:
-            row.append("-")
-            row.append("-")
-    print(" & ".join(row) + r" \\")
-print(r"\hline")
-
-print(r"""\end{tabular}
-\caption{Source and Destination Set Lengths After Node Frequency Filtering}
-\end{table}""")
+                writer.writerow([amt, gt, "-", "-"])
+print(f"Source/Destination set lengths saved to '{length_csv_path}'")

@@ -27,32 +27,39 @@ def compute_entropy(csv_filename, target_type):
     except FileNotFoundError:
         return 0.0  # If file not found, return 0
 
-def generate_entropy_csv(target_type):
+def generate_combined_entropy_csv():
     amounts = ["10", "100", "1000", "10000"]
     distributions = ["Normal", "Uniform_Normal", "Bimodal"]
+    types = ["Source", "Destination"]
 
-    # Prepare CSV data
-    csv_rows = [["Amount"] + distributions]
+    # Create header
+    header = ["Amount"]
+    for dist in distributions:
+        for typ in types:
+            header.append(f"{dist}_{typ}")
+
+    # Prepare CSV rows
+    csv_rows = [header]
     for amt in amounts:
         row = [amt]
         for dist in distributions:
-            filename = f"initial_probability/{dist}_{amt}"
-            entropy = compute_entropy(filename, target_type)
-            row.append(entropy)
+            for typ in types:
+                filename = f"initial_probability/{dist}_{amt}"
+                entropy = compute_entropy(filename, typ)
+                row.append(entropy)
         csv_rows.append(row)
 
-    # Ensure output folder exists
+    # Ensure output directory exists
     output_dir = "entropy"
     os.makedirs(output_dir, exist_ok=True)
 
-    # Write to CSV file
-    output_file = os.path.join(output_dir, f"{target_type.lower()}_entropy.csv")
+    # Write to single CSV
+    output_file = os.path.join(output_dir, "combined_entropy_before.csv")
     with open(output_file, mode="w", newline='') as f:
         writer = csv.writer(f)
         writer.writerows(csv_rows)
 
-    print(f"Entropy for {target_type} saved to '{output_file}'")
+    print(f"Combined entropy saved to '{output_file}'")
 
-# Generate both source and destination entropy CSVs
-generate_entropy_csv("Source")
-generate_entropy_csv("Destination")
+# Generate the CSV
+generate_combined_entropy_csv()
