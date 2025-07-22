@@ -18,14 +18,24 @@ fi
 echo "Initialization complete. Output saved in 'Graphs' directory."
 
 
-python initial_prob.py 
+# Run remaining scripts
+python initial_prob.py || { echo "Failed: initial_prob.py"; 
+                        read -p "Continue? (y/n): " choice; 
+                          [ "$choice" != "y" ] && exit 1; }
+python entropy_before.py || { echo "Failed: entropy_before.py"; 
+                            read -p "Continue? (y/n): " choice; 
+                              [ "$choice" != "y" ] && exit 1; }
+python Transaction.py || { echo "Failed: Transaction.py"; 
+                        read -p "Continue? (y/n): " choice; 
+                        [ "$choice" != "y" ] && exit 1; }
+python Trx_amt_analysis.py || { echo "Failed: Trx_amt_analysis.py"; 
+                                read -p "Continue? (y/n): " choice; 
+                                [ "$choice" != "y" ] && exit 1; }
+python Prob_after_Amt.py || { echo "Failed: Prob_after_Amt.py"; 
+                            read -p "Continue? (y/n): " choice; 
+                            [ "$choice" != "y" ] && exit 1; }
+python entropy_analysis.py || { echo "Failed: entropy_analysis.py"; 
+                                read -p "Continue? (y/n): " choice; 
+                                [ "$choice" != "y" ] && exit 1; }
 
-python entropy_before.py
-
-python Transaction.py
-
-python Trx_amt_analysis.py
-
-python Prob_after_Amt.py
-
-python entropy_analysis.py
+echo "All steps completed."
