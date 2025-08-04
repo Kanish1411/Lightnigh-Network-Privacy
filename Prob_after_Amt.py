@@ -3,10 +3,7 @@ import os
 import json
 import pickle
 import networkx as nx
-
-def edge_cost(u, v, data, trx_amt):
-    cost = (trx_amt * ((data.get("prop_fee", 0) / 1e6) + (data.get("timelock", 0) * data.get("rf", 1e-9)))) + data.get("base_fee", 0) + data.get("bias", 1)
-    return cost
+from cost_functions import *
 
 def prob_after(filename,a,b):
     with open("final_results/"+filename, 'r') as f:
