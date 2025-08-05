@@ -33,7 +33,7 @@ def analyze_graph_pickle(file_path):
  
 
 if __name__ == "__main__":
-    directory = "./new_data"  # Folder containing pickle files
-    for file in os.listdir(directory):
-        if file.endswith(".pkl") or file.endswith(".pickle"):
-            analyze_graph_pickle(os.path.join(directory, file))
+    # for file in os.listdir(directory):
+    #     if file.endswith(".pkl") or file.endswith(".pickle"):
+    #         # analyze_graph_pickle(os.path.join(directory, file))
+    analyze_graph_pickle("filtered_graphs\g10_ignore_bimodal_exponential_filtered_73627.pkl")  # Example file for testing
