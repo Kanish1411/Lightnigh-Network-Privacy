@@ -7,21 +7,21 @@ from cost_functions import *
 
 
 def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv"):
-    sources=[]
-    dest=[]
+    sources = []
+    dest = []
 
     # Source identification
     paths = nx.shortest_path(G, target=nxt, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
     for i in paths.values():
-        if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
+        if [prev, n, nxt] in [i[j:j + 3] for j in range(len(i) - 2)]:
             sources.append(i[0])
 
     # Destination finding
     paths = nx.single_source_dijkstra_path(G, prev, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
     for i in paths.values():
-        if [prev, n, nxt] in [i[j:j+3] for j in range(len(i)-2)]:
+        if [prev, n, nxt] in [i[j:j + 3] for j in range(len(i) - 2)]:
             dest.append(i[-1])
-    
+
     s = 0
     l_src = {}
     l_dest = {}
@@ -31,17 +31,15 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv
         for j in dest:
             if nx.has_path(G, i, j):
                 sp = nx.shortest_path(G, source=i, target=j, weight=lambda u, v, d: edge_cost(u, v, d, trx_amt))
-                if [prev, n, nxt] in [sp[k:k+3] for k in range(len(sp)-2)]:
+                if [prev, n, nxt] in [sp[k:k + 3] for k in range(len(sp) - 2)]:
                     l_src[i] = l_src.get(i, 0) + 1
                     l_dest[j] = l_dest.get(j, 0) + 1
                     s += 1
 
-    # Finding the most probable Source & Destination
     if s == 0:
         print(f"⚠️ Skipping {csv_filename} (no valid source-destination probabilities found)")
-        return
+        return False
 
-    # Finding the most probable Source & Destination
     src = max(l_src, key=l_src.get, default=None)
     d = max(l_dest, key=l_dest.get, default=None)
     s1 = 0
@@ -49,7 +47,6 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv
     u = 0
     v = 0
 
-    # Writing to CSV (only if valid probabilities exist)
     with open(csv_filename, mode='w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Type', 'Node', 'Probability'])
@@ -57,25 +54,34 @@ def find_source_dest_pair(prev, n, nxt, trx_amt, csv_filename="probabilities.csv
         for i in l_src:
             prob = l_src[i] / s
             writer.writerow(['Source', i, prob])
-            u += 1
             s1 += prob
+            u += 1
 
         for i in l_dest:
             prob = l_dest[i] / s
             writer.writerow(['Destination', i, prob])
-            v += 1
             d1 += prob
+            v += 1
 
-        # Write most probable and averages
+        avg_src = s1 / u if u != 0 else 0
+        avg_dest = d1 / v if v != 0 else 0
+
         writer.writerow([])
         writer.writerow(['Summary', '', ''])
         writer.writerow(['Most Probable Source', src, ''])
         writer.writerow(['Most Probable Destination', d, ''])
-        writer.writerow(['Average Source Probability', '', s1 / u if u != 0 else 'N/A'])
-        writer.writerow(['Average Destination Probability', '', d1 / v if v != 0 else 'N/A'])
+        writer.writerow(['Average Source Probability', '', avg_src])
+        writer.writerow(['Average Destination Probability', '', avg_dest])
+
+    # If either average is 1.0, return False (indicates need to retry)
+    if avg_src == 1.0 or avg_dest == 1.0:
+        print(f"⚠️ Discarding {csv_filename} due to average probability of 1.0 (SRC: {avg_src}, DEST: {avg_dest})")
+        return False
+
+    return True
 
     
-def find_initial_probability(G, a, trx_amt, c, max_attempts=20):
+def find_initial_probability(G, a, trx_amt, c, max_attempts=100):
     for _ in range(max_attempts):
         src1 = random.choice(list(G.nodes()))
         dest1 = random.choice(list(G.nodes()))
@@ -86,30 +92,28 @@ def find_initial_probability(G, a, trx_amt, c, max_attempts=20):
                     att = random.choice(path[1:-1])
                     ind = path.index(att)
 
-                    # 🔹 Instead of writing immediately, run probability calculation first
                     temp_csv = c + "_temp.csv"
-                    find_source_dest_pair(path[ind-1], att, path[ind+1], trx_amt, temp_csv)
+                    result = find_source_dest_pair(path[ind-1], att, path[ind+1], trx_amt, temp_csv)
 
-                    # Check if the temp CSV actually contains valid probability data
-                    with open(temp_csv, "r") as f:
-                        lines = f.readlines()
+                    # If result is False, retry
+                    if not result:
+                        if os.path.exists(temp_csv):
+                            os.remove(temp_csv)
+                        continue
 
-                    if len(lines) > 5:  # Means valid probability data (not empty)
-                        # ✅ Now write to Data.csv (confirmed valid)
-                        with open("Data.csv", mode='a', newline='') as csvfile:
-                            writer = csv.writer(csvfile)
-                            writer.writerow(['Source', 'Destination', 'Attacker', "Graph"])
-                            writer.writerow([src1, dest1, att, a])
+                    # ✅ Write final info to Data.csv
+                    with open("Data.csv", mode='a', newline='') as csvfile:
+                        writer = csv.writer(csvfile)
+                        writer.writerow(['Source', 'Destination', 'Attacker', "Graph"])
+                        writer.writerow([src1, dest1, att, a])
 
-                        # Rename temp CSV to final CSV
-                        os.rename(temp_csv, c + ".csv")
-                        return  # ✅ Success: Exit after valid case found
+                    os.rename(temp_csv, c + ".csv")
+                    return  # ✅ Done
 
             except Exception as e:
                 continue
 
     print(f"⚠️ Skipping {c} (no valid probabilities found after {max_attempts} attempts)")
-
 
 
 if not os.path.exists("initial_probability"):
