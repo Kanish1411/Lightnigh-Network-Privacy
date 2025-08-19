@@ -38,7 +38,7 @@ def process_pickles(input_dir, output_dir, thresholds):
 
                 for threshold in thresholds:
                     filtered_graph = filter_graph(graph, threshold)
-                    filtered_file_name = f"{os.path.splitext(file)[0]}_filtered_{threshold}.pkl"
+                    filtered_file_name = f"{os.path.splitext(file)[0]}_{threshold}.pkl"
                     filtered_file_path = os.path.join(output_dir, filtered_file_name)
 
                     # Save filtered graph

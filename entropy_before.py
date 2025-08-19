@@ -29,22 +29,22 @@ def compute_entropy(csv_filename, target_type):
 
 def generate_combined_entropy_csv():
     amounts = ["10", "100", "1000", "10000"]
-    distributions = ["Normal", "Uniform_Normal", "Bimodal"]
     types = ["Source", "Destination"]
+    fn=os.listdir("initial_probability")
 
     # Create header
     header = ["Amount"]
-    for dist in distributions:
+    for f in fn:
         for typ in types:
-            header.append(f"{dist}_{typ}")
+            header.append(f"{f.split(".")[0]}_{typ}")
 
     # Prepare CSV rows
     csv_rows = [header]
     for amt in amounts:
         row = [amt]
-        for dist in distributions:
+        for f in fn:
             for typ in types:
-                filename = f"initial_probability/{dist}_{amt}"
+                filename = f"initial_probability/{f}"
                 entropy = compute_entropy(filename, typ)
                 row.append(entropy)
         csv_rows.append(row)
