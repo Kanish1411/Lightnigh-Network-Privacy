@@ -28,24 +28,23 @@ def compute_entropy(csv_filename, target_type):
         return 0.0  # If file not found, return 0
 
 def generate_combined_entropy_csv():
-    amounts = ["10", "100", "1000", "10000"]
     types = ["Source", "Destination"]
     fn=os.listdir("initial_probability")
 
     # Create header
-    header = ["Amount"]
-    for f in fn:
-        for typ in types:
-            header.append(f"{f.split(".")[0]}_{typ}")
+    header = ["Graph","Source","Destination"]
+    # for f in fn:
+    #     for typ in types:
+    #         header.append(f"{f.split(".")[0]}_{typ}")
 
     # Prepare CSV rows
     csv_rows = [header]
-    for amt in amounts:
-        row = [amt]
-        for f in fn:
-            for typ in types:
+    for f in fn:
+        row= [f.split(".")[0]]
+        for typ in types:
                 filename = f"initial_probability/{f}"
                 entropy = compute_entropy(filename, typ)
+                print(f"Entropy for {f} - {typ} with amount: {entropy}")
                 row.append(entropy)
         csv_rows.append(row)
 
