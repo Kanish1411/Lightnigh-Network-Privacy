@@ -34,20 +34,28 @@ def trx_amt_test(trx_amt,G,file,rows):
                 break
     att=rows[0]["Attacker"]
     actual_amt=calculate_fee_at_node(l,trx_amt,G,att)
-    ind=l.index(att)
+    try:
+        ind=l.index(att)
+    except:
+        print(f"Attacker {att} not in path {l}")
+        return
     src,dests=find_source_dest_pair(l[ind-1],att,l[ind+1],trx_amt)
     new_dest={}
     lower=0
     upper=0
+    # print(f"Possible sources are {len(src)} and possible destinations are {len(dests)}")
+    # print(f"Actual amount at attacker {actual_amt} for {att} from {src1} to {dest}")
     for d in dests:
         bf=[]
         pf=[]
         path=nx.shortest_path(G,source=att,target=d,weight=lambda u, v, d: edge_cost(u, v, d, actual_amt))
+        print(path)
         for i in range(len(path) - 1, 0, -1):
             v, u = path[i], path[i - 1] 
             edge_data = G[u][v]
-            bf.append(edge_data.get("base_fee", 0))
-            pf.append(edge_data.get("prop_fee", 0) / 1e6)
+            bf.append(int(edge_data.get("fee_base_msat", 0)))
+            pf.append(int(edge_data.get("fee_rate_milli_msat", 0)) / 1e6)
+        print(bf,pf)
         n=len(bf)
         term1=0
         for i in range(n):
@@ -80,10 +88,10 @@ def trx_amt_test(trx_amt,G,file,rows):
         lower=upper-(val-upper)
         if lower <0:
             continue
-        if upper > actual_amt  or lower > actual_amt:
-            print(f"Out of bounds for {d}")
-            break
-        
+        # if upper < actual_amt  or lower > actual_amt:
+        #     print(f"Out of bounds for {d}")
+        #     break
+        print(upper,lower,actual_amt)
         try:
             val=binary_search(upper,lower,actual_amt,att,d)
             if val == -1 or val==0:
@@ -136,10 +144,11 @@ with open("Data.csv", "r") as csvfile:
 
 # Your original loop
 os.makedirs("Transaction_amt_test", exist_ok=True)  # Ensure the directory exists
-for i in ["Normal", "Uniform_Normal", "Bimodal"]:
-    for j in ["10","100","1000","10000"]: 
-        graph_filename = f"graph_{i}_{j}.pkl"
-        graph_path = os.path.join("Graphs", graph_filename)
+a=os.listdir("filtered_graphs")
+for i in a[1:]: 
+        print(i)
+        graph_filename = i
+        graph_path = os.path.join("filtered_graphs", graph_filename)
 
         print(f"Processing: {graph_filename}")
 
@@ -147,12 +156,11 @@ for i in ["Normal", "Uniform_Normal", "Bimodal"]:
             with open(graph_path, "rb") as f:
                 G = pickle.load(f)
 
-            trx_amt = int(j)
+            trx_amt = int(i.split("_")[-1].split(".")[0])
             key = graph_filename
-
             if key in rows_by_graph:
                 matched_rows = rows_by_graph[key]
-                trx_amt_test(trx_amt=trx_amt, G=G, file=f"test/{i}_{j}", rows=matched_rows)
+                trx_amt_test(trx_amt=trx_amt, G=G, file=f"Transaction_amt_test/{i}", rows=matched_rows)
             else:
                 print(f"No matching data rows found for: {key}")
         else:
